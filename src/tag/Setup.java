@@ -18,7 +18,7 @@ public class Setup {
         ArrayList<Room> rooms = new ArrayList<>();
         
         
-        rooms.add(new Room("Entrance", "DESCRIPTIIIIOOOONN", "FEEEEELING"));
+        rooms.add(new Room("Entrance", "You're standing at the entrance to a dungeon, right in front of you is a wooden door, surrounded by a stone wall.", "You are feeling determined!"));
         rooms.add(new Room("Room1", "DESCRIPTIIIIOOOONN", "FEEEEELING"));
         rooms.add(new Room("room2", "DESCRIPTIIIIOOOONN", "FEEEEELING"));
         rooms.add(new Room("room3", "DESCRIPTIIIIOOOONN", "FEEEEELING"));
