@@ -53,6 +53,10 @@ public class Room {
     public Room getSouth() {
         return south;
     }
- 
+    
+    @Override
+    public String toString() {
+        return name;
+    }
     
 }
