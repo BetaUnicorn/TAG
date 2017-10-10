@@ -21,11 +21,11 @@ public class Player {
         return coinPurse;
     }
     
-    public void addCoins(){
+    public void addCoins(int amount){
          coinPurse += amount;
     
     }
-    public void loseCoins(){
+    public void loseCoins(int amount){
         coinPurse -= amount;
     }
     
