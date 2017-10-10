@@ -71,7 +71,7 @@ public class GameController {
 
         while (go) {
 
-            io.put("Which way do you want to go?");
+            io.put("What do you want to do?");
 
             switch (io.get().toLowerCase()) {
                 case "n":
