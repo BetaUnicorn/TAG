@@ -12,7 +12,7 @@ public class GameController {
     private ArrayList<Room> rooms = new ArrayList<>();
     private boolean play = true;
     private Room currRoom;
-    private LinkedList<Room> roomHist = new LinkedList<>();
+    private LinkedList<Room> roomHist = new LinkedList<>();;
     
     
     public void play() {
@@ -41,6 +41,7 @@ public class GameController {
             //TODO: prints the direction options the player has
             //TODO: Linked list remebers path through the dungeon.
             
+            p.addCoins(currRoom.getGold());
             addRoomHistory(currRoom);
             currRoom = pInput();
             

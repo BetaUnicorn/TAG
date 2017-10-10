@@ -4,13 +4,15 @@ public class Room {
     private String name;
     private String desc;
     private String feeling;
+    private int gold;
     private Room north, east, west, south;
     
     
-    public Room(String name, String desc, String feeling) {
+    public Room(String name, String desc, String feeling, int gold) {
         this.name = name;
         this.desc = desc;
         this.feeling = feeling;
+        this.gold = gold;
         
     }
 
@@ -57,6 +59,14 @@ public class Room {
     @Override
     public String toString() {
         return name;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
     
 }

@@ -3,7 +3,7 @@ package tag;
 public class Player {
     private String name;
     private int health = 10;
-    private int coinPurse = 0;
+    private int bank = 0;
     
     public Player(String name) {
         this.name = name;
@@ -17,16 +17,13 @@ public class Player {
         return health;
     }
 
-    public int getCoinPurse() {
-        return coinPurse;
+    public int getBank() {
+        return bank;
     }
     
     public void addCoins(int amount){
-         coinPurse += amount;
+         bank += amount;
     
-    }
-    public void loseCoins(int amount){
-        coinPurse -= amount;
     }
     
 }
