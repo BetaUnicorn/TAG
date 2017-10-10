@@ -117,10 +117,10 @@ public class GameController {
                 
             case "h":
             case "help":
-                io.put("N & NORTH\tGo North\n"
-                        + "S & SOUTH\tGo South\n"
-                        + "E & EAST\tGo East\n"
-                        + "W & WEST\tGo West\n"
+                io.put("N & NORTH\tmove Northern direction\n"
+                        + "S & SOUTH\tmove Southern direction\n"
+                        + "E & EAST\tmove Eastern direction\n"
+                        + "W & WEST\tmove Western direction\n"
                         + "Q & QUIT\tEnd Game\n"
                         + "\n");
                 break;
