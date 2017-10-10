@@ -2,6 +2,7 @@
 package tag;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import textio.SysTextIO;
 import textio.TextIO;
 
@@ -11,6 +12,7 @@ public class GameController {
     private ArrayList<Room> rooms = new ArrayList<>();
     private boolean go = true;
     private Room currRoom;
+    private LinkedList<Room> roomHist = new LinkedList<>();
     
     
     public void play() {
@@ -38,11 +40,12 @@ public class GameController {
             //TODO: prints the direction options the player has
             //TODO: Linked list remebers path through the dungeon.
             
+            addRoomHistory(currRoom);
             currRoom = pInput();
             
         }
         
-        
+        io.put(roomHist.toString());
         
     }
     
@@ -54,8 +57,6 @@ public class GameController {
      * Takes player input commands, and processes it.
      * @return Room
      */
-    
-    //change to playerInput/pInput
     public Room pInput() {
         Room nextRoom = currRoom;
         boolean go = true;
@@ -157,5 +158,9 @@ public class GameController {
         
         
         return str.toString();
+    }
+
+    private void addRoomHistory(Room room) {
+        roomHist.add(room);
     }
 }
