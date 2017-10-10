@@ -31,6 +31,8 @@ public class GameController {
             io.put("-----------------------------------------" + "\n");
             io.put(currRoom.getDesc() + "\n");
             io.put("-----------------------------------------\n");
+            io.put(getDir());
+            
             
            // io.put("You see doors in the following directions: ");
             //TODO: prints the direction options the player has
@@ -107,6 +109,22 @@ public class GameController {
                 }
                 break;
                 
+            case "q":
+            case "quit":
+                io.put("Game Over");
+                go = false;
+                break;
+                
+            case "h":
+            case "help":
+                io.put("N & NORTH\tGo North\n"
+                        + "S & SOUTH\tGo South\n"
+                        + "E & EAST\tGo East\n"
+                        + "W & WEST\tGo West\n"
+                        + "Q & QUIT\tEnd Game\n"
+                        + "\n");
+                break;
+                
             default:
                 io.put("Please pick a valid command bitch...\n\n");
                 break;
@@ -116,5 +134,28 @@ public class GameController {
         
         
         return nextRoom;
+    }
+
+    private String getDir() {
+        StringBuilder str = new StringBuilder();
+        
+        str.append("You see doors in the following directions:  ");
+        if (currRoom.getNorth() != null) {
+            str.append("|North|");
+        }
+        if (currRoom.getSouth()!= null) {
+            str.append("|South|");
+        }
+        if (currRoom.getEast()!= null) {
+            str.append("|East|");
+        }
+        if (currRoom.getWest() != null) {
+            str.append("|West|");
+        }
+        
+        str.append("\n");
+        
+        
+        return str.toString();
     }
 }
