@@ -63,6 +63,7 @@ public class GameController {
             io.put("Which way do you want to go?");
         
         switch(io.get().toLowerCase()) {
+            case "n":
             case "north":
                 if(currRoom.getNorth() != null) {
                     nextRoom = currRoom.getNorth();
@@ -73,6 +74,7 @@ public class GameController {
                 }
                 break;
             
+            case "s":
             case "south":
                 if(currRoom.getSouth() != null) {
                     nextRoom = currRoom.getSouth();
@@ -83,6 +85,7 @@ public class GameController {
                 }
                 break;
             
+            case "e":
             case "east":
                 if(currRoom.getEast() != null) {
                     nextRoom = currRoom.getEast();
@@ -93,6 +96,7 @@ public class GameController {
                 }
                 break;
             
+            case "w" :
             case "west":
                 if(currRoom.getWest() != null) {
                     nextRoom = currRoom.getWest();
