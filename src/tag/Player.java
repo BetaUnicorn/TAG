@@ -25,7 +25,7 @@ public class Player {
          coinPurse += amount;
     
     }
-    public void lossCoins(){
+    public void loseCoins(){
         coinPurse -= amount;
     }
     
