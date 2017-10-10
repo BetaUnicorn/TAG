@@ -16,6 +16,10 @@ public class Player {
     public int getHealth() {
         return health;
     }
+    
+    public void changeHP(int hp) {
+        health += hp;
+    }
 
     public int getBank() {
         return bank;

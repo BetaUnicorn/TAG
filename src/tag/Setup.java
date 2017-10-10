@@ -76,6 +76,10 @@ public class Setup {
         rooms.get(11).setWest(rooms.get(10));
         
         
+        //Sets up traps for the rooms 3 and 7
+        rooms.get(3).setTrap(new Trap(-4));
+        rooms.get(7).setTrap(new Trap(-5));
+        
         return rooms;
     }
     

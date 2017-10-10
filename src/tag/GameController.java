@@ -42,6 +42,14 @@ public class GameController {
             //TODO: Linked list remebers path through the dungeon.
             
             p.addCoins(currRoom.getGold());
+            
+            if (currRoom.getTrap() != null) {
+                p.changeHP(currRoom.getTrapDmg());
+                io.put("********************************\n");
+                io.put("You took " + currRoom.getTrapDmg() + " damage from a trap.\n");
+                io.put("********************************\n");
+            }
+            
             addRoomHistory(currRoom);
             currRoom = pInput();
             

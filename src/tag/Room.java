@@ -6,6 +6,7 @@ public class Room {
     private String feeling;
     private int gold;
     private Room north, east, west, south;
+    private Trap trap;
     
     
     public Room(String name, String desc, String feeling, int gold) {
@@ -13,7 +14,6 @@ public class Room {
         this.desc = desc;
         this.feeling = feeling;
         this.gold = gold;
-        
     }
 
     public void setNorth(Room north) {
@@ -69,4 +69,15 @@ public class Room {
         this.gold = gold;
     }
     
+    public void setTrap(Trap trap) {
+        this.trap = trap;
+    }
+    
+    public int getTrapDmg(){
+        return trap.getDmg();
+    }
+    
+    public Trap getTrap() {
+        return trap;
+    }
 }
