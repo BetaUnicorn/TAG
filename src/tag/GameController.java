@@ -10,7 +10,7 @@ public class GameController {
     private Setup s = new Setup();
     private TextIO io = new TextIO(new SysTextIO());
     private ArrayList<Room> rooms = new ArrayList<>();
-    private boolean go = true;
+    private boolean play = true;
     private Room currRoom;
     private LinkedList<Room> roomHist = new LinkedList<>();
     
@@ -26,7 +26,8 @@ public class GameController {
         
         io.put("Welcome " + p.getName() + "\n");
         
-        while(go) {
+        goLoop:
+        while(play) {
             io.clear();
             io.put("_________________________________________\n");
             io.put("You are standing in " + currRoom.getName() + "\n");
@@ -45,7 +46,7 @@ public class GameController {
             
         }
         
-        io.put(roomHist.toString());
+        io.put("Room histroy: " + roomHist.toString() + "\n\n");
         
     }
     
@@ -112,7 +113,8 @@ public class GameController {
                 
             case "q":
             case "quit":
-                io.put("Game Over");
+                io.put("Game Over\n");
+                play = false;
                 go = false;
                 break;
                 
