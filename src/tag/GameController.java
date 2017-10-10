@@ -1,4 +1,4 @@
-//tesssssssssssssssssst
+
 package tag;
 
 import java.util.ArrayList;
@@ -99,7 +99,7 @@ public class GameController {
                     go = false;
                 }
                 else {
-                   io.put("You can't go East \n");
+                   io.put("You can't go West \n");
                 }
                 break;
                 
