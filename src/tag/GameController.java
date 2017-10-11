@@ -137,7 +137,7 @@ public class GameController {
                     io.put("----------------------------------------------\n");
                     io.put(p.getName() + "\n"
                             + p.getHealth() + " HP \n"
-                            +p.getBank() + " Gold \n");
+                            +p.getBank() + " Gold \n" );
                     io.put("----------------------------------------------\n");
 
                     break;
