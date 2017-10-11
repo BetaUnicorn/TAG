@@ -23,7 +23,8 @@ public class GameController {
 
         io.put("Welcome to TAG... \n");
 
-        io.put("Welcome " + p.getName() + "\n");
+        io.put("Welcome " + p.getName() + "\nPress enter to continue\n");
+        io.get();
         
         goLoop:
         while (play) {
@@ -35,9 +36,6 @@ public class GameController {
             io.put("-----------------------------------------\n");
             io.put(getDir());
 
-            // io.put("You see doors in the following directions: ");
-            //TODO: prints the direction options the player has
-            //TODO: Linked list remebers path through the dungeon.
             p.addCoins(currRoom.getGold());
 
             if (currRoom.getTrap() != null) {
