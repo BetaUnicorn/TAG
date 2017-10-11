@@ -1,5 +1,6 @@
 package tag;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import textio.SysTextIO;
@@ -40,6 +41,7 @@ public class GameController {
             io.put("-----------------------------------------\n");
             
             if (currRoom.equals(rooms.get(11))) {
+                //io.close();
                 play = false;
                 break;
             }
