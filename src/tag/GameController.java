@@ -143,7 +143,7 @@ public class GameController {
                     break;
 
                 default:
-                    io.put("Please pick a valid command bitch...\n\n");
+                    io.put("Please pick a valid command...\n\n");
                     break;
 
             }
