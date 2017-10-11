@@ -38,8 +38,15 @@ public class GameController {
             io.put("-----------------------------------------" + "\n");
             io.put(currRoom.getDesc() + "\n");
             io.put("-----------------------------------------\n");
+            
+            if (currRoom.equals(rooms.get(11))) {
+                play = false;
+                break;
+            }
+            
             io.put(getDir());
 
+            
             p.addCoins(currRoom.getGold());
 
             if (currRoom.getTrap() != null) {
@@ -50,8 +57,11 @@ public class GameController {
             }
 
             addRoomHistory(currRoom);
+            
+                
             currRoom = pInput();
-
+            
+            
         }
 
         if (!roomHist.isEmpty()) {
