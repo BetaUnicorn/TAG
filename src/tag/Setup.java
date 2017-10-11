@@ -112,8 +112,8 @@ public class Setup {
         rooms.get(9).setSouth(rooms.get(8));
         
         //Conections for room 9 - 10
-        rooms.get(9).setEast(rooms.get(10));
-        rooms.get(10).setWest(rooms.get(9));
+        rooms.get(9).setWest(rooms.get(10));
+        rooms.get(10).setEast(rooms.get(9));
         
         //Conections for room 10 - final
         rooms.get(10).setNorth(rooms.get(11));
