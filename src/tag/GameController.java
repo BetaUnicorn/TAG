@@ -13,8 +13,7 @@ public class GameController {
     private boolean play = true;
     private Room currRoom;
     private LinkedList<Room> roomHist = new LinkedList<>();
-    ;
-    Player p = s.newPlayer();
+    private Player p = s.newPlayer();
 
     public void play() {
 
