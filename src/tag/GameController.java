@@ -24,7 +24,7 @@ public class GameController {
         io.put("Welcome to TAG... \n");
 
         io.put("Welcome " + p.getName() + "\n");
-
+        
         goLoop:
         while (play) {
             io.clear();
@@ -52,7 +52,9 @@ public class GameController {
 
         }
 
-        io.put("Room histroy: " + roomHist.toString() + "\n\n");
+        if (!roomHist.isEmpty()) {
+            io.put("Room histroy: " + roomHist.toString() + "\n\n");
+        }
 
     }
 
@@ -133,10 +135,11 @@ public class GameController {
 
                 case "stats":
                     io.put("----------------------------------------------\n");
-                    io.put(p.getName() + "\n" 
-                            + p.getHealth() + " HP \n");
+                    io.put(p.getName() + "\n"
+                            + p.getHealth() + " HP \n"
+                            +p.getBank() + " Gold \n");
                     io.put("----------------------------------------------\n");
-                    
+
                     break;
 
                 default:
