@@ -24,7 +24,7 @@ public class GameController {
         io.put("***********************************************************************************\n"
                 + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n" +
                 "Beyond this waterfall lies a small coridor.\n" +
-                "\"name\" wake up in a coridor, without any recollection about how you got there,\n" +
+                 p.getName() + " wakes up in a coridor, without any recollection about how you got there,\n" +
                 "and a feeling of disarray.\n" +
                 "*********************************************************************************\n");
 
