@@ -1,9 +1,9 @@
 package tag;
 
 public class Room {
-    private String name;
-    private String desc;
-    private String feeling;
+    private final String name;
+    private final String desc;
+    private final String feeling;
     private int gold;
     private Room north, east, west, south;
     private Trap trap;
