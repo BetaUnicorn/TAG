@@ -123,7 +123,7 @@ public class Setup {
         rooms.get(7).setTrap(new Trap(-5));
 
         //add items to rooms
-        rooms.get(1).setItem(new Potion());
+        rooms.get(1).setItem(new Potion(10, "Health Potion"));
         
         
         return rooms;

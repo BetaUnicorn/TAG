@@ -6,7 +6,11 @@ import textio.TextIO;
 public class Pickup {
     private final TextIO io = new TextIO(new SysTextIO());
     public void goldPickup(Room currRoom, Player p) {
-        p.addCoins(currRoom.getGold());
+        if (currRoom.getGold() != 0) {
+            p.addCoins(currRoom.getGold());
+            io.put("You picked up " + currRoom.getGold() + " gold.\n");
+            currRoom.setGold(0);
+        }
     }
     
     public void itemPickup(Room currRoom, Bag bag) {

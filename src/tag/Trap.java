@@ -24,6 +24,7 @@ public class Trap {
                 io.put("********************************\n");
                 io.put("You took " + currRoom.getTrapDmg() + " damage from a trap.\n");
                 io.put("********************************\n");
+                currRoom.setTrap(null);
             }
     }
     
