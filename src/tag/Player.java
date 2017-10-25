@@ -23,12 +23,10 @@ public class Player {
         return health;
     }
 
-    public void changeHP(Player p, int hp) {
-        if (p.getHealth() <= 100 && p.getHealth() > 0) {
-            health += hp;
-        }
-        else{
-            p.setHealth(100);
+    public void changeHP(int hp) {
+        health += hp;
+        if (health > 100) {
+            health = 100;
         }
     }
 
@@ -39,9 +37,6 @@ public class Player {
     public void addCoins(int amount) {
         bank += amount;
 
-    }
-    public void setHealth(int hp){
-        this.health = hp;
     }
 
 }

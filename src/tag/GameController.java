@@ -151,13 +151,7 @@ public class GameController {
                             +p.getBank() + " Gold \n" );
                     io.put("----------------------------------------------\n");
                     
-                    ArrayList<String> choices = new ArrayList<>();
-                    for(Item item : p.getBag().items){
-                        choices.add(item.getName());
-                    }
-                    int index = io.select("", choices, "");
-                    Item selected = p.getBag().items.get(index);
-                    
+                    p.getBag().useItem(p);
                     
                     break;
 

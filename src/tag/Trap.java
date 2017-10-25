@@ -20,7 +20,7 @@ public class Trap {
     
     public void checkTrap(Room currRoom, Player p) {
         if (currRoom.getTrap() != null) {
-                p.changeHP(p, currRoom.getTrapDmg());
+                p.changeHP(currRoom.getTrapDmg());
                 io.put("********************************\n");
                 io.put("You took " + currRoom.getTrapDmg() + " damage from a trap.\n");
                 io.put("********************************\n");
