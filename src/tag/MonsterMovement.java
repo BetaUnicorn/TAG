@@ -18,6 +18,8 @@ public class MonsterMovement {
     private Random rand;
 
     public Room takeTurn(Room currRoom) {
+        rand = new Random();
+        
         if (currRoom.getNorth() != null) {
             dir.add(currRoom.getNorth());
         }
@@ -33,7 +35,8 @@ public class MonsterMovement {
        
         int index = rand.nextInt(dir.size());
         Room nextRoom = dir.get(index);
-       
+       dir.clear();
         return nextRoom;
+        
     }
 }
