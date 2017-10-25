@@ -13,6 +13,6 @@ public class Bag {
     
     @Override
     public String toString() {
-        items.toString();
+        return items.toString();
     }
 }
