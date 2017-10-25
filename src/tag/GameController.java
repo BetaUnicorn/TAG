@@ -189,7 +189,11 @@ public class GameController {
         return str.toString();
     }
 
-    private void addRoomHistory(Room room) {
+    public void addRoomHistory(Room room) {
         roomHist.add(room);
+    }
+    
+    public Room getRoom() {
+        return currRoom;
     }
 }

@@ -1,5 +1,7 @@
 package tag;
 
+import tag.items.Item;
+
 public class Room {
     private final String name;
     private final String desc;
@@ -7,6 +9,7 @@ public class Room {
     private int gold;
     private Room north, east, west, south;
     private Trap trap;
+    private Item item;
     
     
     public Room(String name, String desc, String feeling, int gold) {
@@ -79,5 +82,13 @@ public class Room {
     
     public Trap getTrap() {
         return trap;
+    }
+    
+    public void setItem(Item item) {
+        this.item = item;
+    }
+    
+    public Item getItem() {
+        return this.item;
     }
 }
