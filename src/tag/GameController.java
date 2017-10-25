@@ -158,6 +158,7 @@ public class GameController {
                     int index = io.select("", choices, "");
                     Item selected = p.getBag().items.get(index);
                     
+                    
                     break;
 
                 default:
