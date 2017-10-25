@@ -6,7 +6,7 @@ public interface Item {
     
     public void effect(Player p);
     
-    public Item getItem();
+    public String getName();
     
     @Override
     public String toString();

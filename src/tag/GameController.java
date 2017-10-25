@@ -3,18 +3,21 @@ package tag;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import tag.items.Item;
 import textio.SysTextIO;
 import textio.TextIO;
 
 public class GameController {
 
-    private Setup s = new Setup();
-    private TextIO io = new TextIO(new SysTextIO());
+    private final Setup s = new Setup();
+    private final TextIO io = new TextIO(new SysTextIO());
     private ArrayList<Room> rooms = new ArrayList<>();
     private boolean play = true;
     private Room currRoom;
     private LinkedList<Room> roomHist = new LinkedList<>();
-    private Player p = s.newPlayer();
+    private final Player p = s.newPlayer();
+    private final Pickup pick = new Pickup();
+    private final Trap trap = new Trap();
 
     public void play() {
 
@@ -48,19 +51,12 @@ public class GameController {
             
             io.put(getDir());
 
+            pick.itemPickup(currRoom, p.getBag());
+            pick.goldPickup(currRoom, p);
+            trap.checkTrap(currRoom, p);
             
-            p.addCoins(currRoom.getGold());
-
-            if (currRoom.getTrap() != null) {
-                p.changeHP(currRoom.getTrapDmg());
-                io.put("********************************\n");
-                io.put("You took " + currRoom.getTrapDmg() + " damage from a trap.\n");
-                io.put("********************************\n");
-            }
 
             addRoomHistory(currRoom);
-            
-                
             currRoom = pInput();
             
             
@@ -154,7 +150,14 @@ public class GameController {
                             + p.getHealth() + " HP \n"
                             +p.getBank() + " Gold \n" );
                     io.put("----------------------------------------------\n");
-
+                    
+                    ArrayList<String> choices = new ArrayList<>();
+                    for(Item item : p.getBag().items){
+                        choices.add(item.getName());
+                    }
+                    int index = io.select("", choices, "");
+                    Item selected = p.getBag().items.get(index);
+                    
                     break;
 
                 default:

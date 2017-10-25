@@ -16,13 +16,13 @@ public class Potion implements Item {
     }
 
     @Override
-    public Item getItem() {
-        return this;
+    public String toString() {
+        return this.name;
     }
 
     @Override
-    public String toString() {
-        return this.name;
+    public String getName() {
+        return name;
     }
     
 }
