@@ -11,7 +11,7 @@ public class Potion implements Item {
 
     @Override
     public void effect(Player p) {
-        p.changeHP(p, healAmount);
+        p.changeHP(healAmount);
         
     }
 
