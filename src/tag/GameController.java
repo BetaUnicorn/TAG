@@ -18,11 +18,14 @@ public class GameController {
     private final Player p = s.newPlayer();
     private final Pickup pick = new Pickup();
     private final Trap trap = new Trap();
+    private Room monsterCurrRoom;
+    Monster monster = new Monster("Lars", 10000);
 
     public void play() {
 
         rooms = s.createRooms();
         currRoom = rooms.get(0);
+        monsterCurrRoom = rooms.get(11);
 
         io.put("***********************************************************************************\n"
                 + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n" +
@@ -59,7 +62,8 @@ public class GameController {
             addRoomHistory(currRoom);
             currRoom = pInput();
             
-            
+            monsterCurrRoom = monster.move.takeTurn(monsterCurrRoom);
+            io.put(monsterCurrRoom.toString());
         }
 
         if (!roomHist.isEmpty()) {
