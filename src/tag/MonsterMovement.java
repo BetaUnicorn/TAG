@@ -13,7 +13,6 @@ import java.util.Random;
  * @author Martin
  */
 public class MonsterMovement {
-
     private ArrayList<Room> dir = new ArrayList<>();
     private Random rand;
 

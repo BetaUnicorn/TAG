@@ -8,7 +8,7 @@ import textio.TextIO;
 public class Bag {
 
     private final TextIO io = new TextIO(new SysTextIO());
-    ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
 
     public void addBagItem(Item item) {
         items.add(item);
@@ -19,6 +19,24 @@ public class Bag {
         return items.toString();
     }
 
+    public void removeItem(Item item) {
+        ArrayList<String> choices = new ArrayList<>();
+        
+        
+        for (int i = 0; i < items.size(); i++) {
+            choices.add(item.getName());
+        }
+        choices.add("Exit");
+        int index = io.select("Bag", choices, "");
+        if(index == items.size()){
+            //Exit
+        }else{
+            Item selected = items.get(index);
+            items.remove(selected);
+        }
+        
+    }
+    
     public void useItem(Player p) {
         ArrayList<String> choices = new ArrayList<>();
         

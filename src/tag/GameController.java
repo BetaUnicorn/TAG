@@ -60,7 +60,6 @@ public class GameController {
             pick.itemPickup(currRoom, p.getBag());
             pick.goldPickup(currRoom, p);
             trap.checkTrap(currRoom, p);
-            event.monsterCollision(currRoom, monsterCurrRoom, p, monster);
             
             if (p.getHealth() <= 0) {
                 deathNote();
@@ -69,8 +68,15 @@ public class GameController {
             }
 
             addRoomHistory(currRoom);
+            
             currRoom = pInput();
-
+            
+            if (currRoom.equals(monsterCurrRoom)) {
+                event.monsterCollision(currRoom, monsterCurrRoom, p, monster);
+                play = false;
+                break;
+            }
+            
             monsterCurrRoom = monster.takeTurn(monsterCurrRoom);
             io.put(monsterCurrRoom.toString());
         }
@@ -207,11 +213,14 @@ public class GameController {
     public Room getRoom() {
         return currRoom;
     }
+    
+    public void setPlay(boolean play) {
+        this.play = play;
+    }
 
     public void deathNote() {
-
         io.put("You are dead \n");
-
+        event.deathScreen();
     }
 
 }
