@@ -35,7 +35,7 @@ public class GameController {
                 + "and a feeling of disarray.\n"
                 + "*********************************************************************************\n");
 
-        io.put("Welcome " + p.getName() + "\nIf you're at any point throughout the game need a list of commands, type 'help' for a list of commands " + "\nPress enter to continue\n");
+        io.put("Welcome " + p.getName() + "\nIf you're at any point throughout the game need help, type 'help' for a list of commands " + "\nPress enter to continue\n");
         io.get();
 
         goLoop:
