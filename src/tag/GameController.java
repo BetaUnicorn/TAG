@@ -23,7 +23,7 @@ public class GameController {
     private Highscore highscore = new Highscore();
     private Event event = new Event();
 
-    public void play() {
+    public void play() throws IOException {
         NPC monster = s.newNpc("Lars", 10000);
         rooms = s.createRooms();
         currRoom = rooms.get(0);
@@ -218,9 +218,10 @@ public class GameController {
         this.play = play;
     }
 
-    public void deathNote() {
+    public void deathNote() throws IOException {
         io.put("You are dead \n");
-        event.deathScreen();
+        io.put("Here are all the people who did it better than you. \n");
+        io.put(highscore.showScores());
     }
 
 }

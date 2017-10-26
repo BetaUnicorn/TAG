@@ -17,15 +17,24 @@ import java.util.ArrayList;
  *
  * @author Martin
  */
-public class Highscore {
-    private String name;
-    private int score;
-    private ArrayList<String> scores = new ArrayList<>();
+public class Highscore {    
     
-    
-//    public String showScores(){
-//       
-//    }
+    public String showScores() throws IOException{
+       StringBuilder oldScores = new StringBuilder();
+        String line = "";
+        
+        File file = new File("scores.txt");
+        
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        
+        while((line = reader.readLine()) != null)
+        {
+            oldScores.append(line + "\r\n");
+        }
+        reader.close();
+        
+        return oldScores.toString();
+    }
     
     public void addScore(Player p) throws FileNotFoundException, IOException
     {

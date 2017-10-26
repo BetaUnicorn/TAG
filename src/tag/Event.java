@@ -14,9 +14,4 @@ public class Event {
         io.put("You met " + monster.getName() + " He damaged you " + damage + " damage #ded\n");
         io.put("***********************************************\n");
     }
-
-    void deathScreen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
