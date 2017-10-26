@@ -40,12 +40,18 @@ public class Player {
 
     }
     
+    //Allows player to Pick up an item from a room
     public void loot(Room currRoom, Player p) {
         pickUp.itemPickup(currRoom, p);
     }
     
+    //Allows the player to trash a item, from inventory
     public void trash(Room currRoom, Player p) {
         pickUp.itemTrash(currRoom, p);
+    }
+    
+    public void useItem(Player p) {
+        pickUp.useItem(p);
     }
 
 }

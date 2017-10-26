@@ -24,26 +24,6 @@ public class Bag implements Inventory{
     public void removeItem(Item item) {
         items.remove(item);
     }
-    
-    @Override
-    public void useItem(Player p) {
-        ArrayList<String> choices = new ArrayList<>();
-        
-        
-        for (Item item : p.getBag().items) {
-            choices.add(item.getName());
-        }
-        choices.add("Exit");
-        int index = io.select("Bag", choices, "");
-        if(index == items.size()){
-            //Exit
-        }else{
-            Item selected = p.getBag().items.get(index);
-            selected.effect(p);
-            items.remove(selected);
-        }
-
-    }
 
     @Override
     public ArrayList<Item> getInventory() {

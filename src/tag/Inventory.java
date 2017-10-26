@@ -9,7 +9,5 @@ public interface Inventory {
     
     public void removeItem(Item item);
     
-    public void useItem(Player p);
-    
     public  ArrayList<Item> getInventory();
 }

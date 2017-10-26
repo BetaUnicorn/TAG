@@ -61,4 +61,23 @@ public class Pickup {
             io.put("You threw away " + selected.getName() + " into the room\n");
         }
     }
+    
+    public void useItem(Player p) {
+        ArrayList<String> choices = new ArrayList<>();
+        
+        
+        for (int i = 0; i < p.getBag().getBagSize(); i++) {
+            choices.add(p.getBag().getName(i));
+        }
+        choices.add("Exit");
+        int index = io.select("Bag", choices, "");
+        if(index == p.getBag().getBagSize()){
+            //Exit
+        }else{
+            Item selected = p.getBag().getInventory().get(index);
+            selected.effect(p);
+            p.getBag().getInventory().remove(selected);
+        }
+
+    }
 }

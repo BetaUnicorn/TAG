@@ -9,7 +9,6 @@ public class Room {
     private int gold;
     private Room north, east, west, south;
     private Trap trap;
-    private Item item;
     private RoomInventory inventory = new RoomInventory();
     
     

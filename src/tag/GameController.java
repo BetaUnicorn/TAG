@@ -35,7 +35,7 @@ public class GameController {
                 + "and a feeling of disarray.\n"
                 + "*********************************************************************************\n");
 
-        io.put("Welcome " + p.getName() + "\nPress enter to continue\n");
+        io.put("Welcome " + p.getName() + "\nIf you're at any point throughout the game need a list of commands, type 'help' for a list of commands " + "\nPress enter to continue\n");
         io.get();
 
         goLoop:
@@ -164,8 +164,9 @@ public class GameController {
                             + "E & EAST\tMove Eastern direction\n"
                             + "W & WEST\tMove Western direction\n"
                             + "Q & QUIT\tEnd Game\n"
-                            + "Inspect\t\tSee if the room contains items, and loot"
+                            + "Inspect\t\tSee if the room contains items, and loot\n"
                             + "Inv\t\tSee Inventory (Select item to use it)\n"
+                            + "Trash\t\tThrow an item from your inventory, into the room\n"
                             + "STATS\t\tSee stats\n" 
                             + "\n");
                     break;
@@ -184,7 +185,7 @@ public class GameController {
                     break;
                     
                 case "inv":
-                    p.getBag().useItem(p);
+                    p.useItem(p);
                     break;
                 
                 case "trash":
