@@ -19,11 +19,10 @@ public class GameController {
     private final Pickup pick = new Pickup();
     private final Trap trap = new Trap();
     private Room monsterCurrRoom;
-    // Burde rykkes til setup
-    NPC monster = new Monster("Lars", 10000);
+    
 
     public void play() {
-
+        NPC monster = s.newNpc("Lars", 10000);
         rooms = s.createRooms();
         currRoom = rooms.get(0);
         monsterCurrRoom = rooms.get(11);

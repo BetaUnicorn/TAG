@@ -14,6 +14,10 @@ public class Setup {
         io.put("Input name: ");
         return p = new Player(io.get());
     }
+    
+    public NPC newNpc(String name, int hp){
+        return new Monster(name, hp);
+    }
 
     public ArrayList<Room> createRooms() {
         ArrayList<Room> rooms = new ArrayList<>();
