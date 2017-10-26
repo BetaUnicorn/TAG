@@ -21,6 +21,7 @@ public class GameController {
     private final Trap trap = new Trap();
     private Room monsterCurrRoom;
     private Highscore highscore = new Highscore();
+    private Event event = new Event();
 
     public void play() {
         NPC monster = s.newNpc("Lars", 10000);
@@ -59,7 +60,8 @@ public class GameController {
             pick.itemPickup(currRoom, p.getBag());
             pick.goldPickup(currRoom, p);
             trap.checkTrap(currRoom, p);
-
+            event.monsterCollision(currRoom, monsterCurrRoom, p, monster);
+            
             if (p.getHealth() <= 0) {
                 deathNote();
                 play = false;
