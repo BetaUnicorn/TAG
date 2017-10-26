@@ -35,7 +35,7 @@ public class MonsterMovement {
        
         int index = rand.nextInt(dir.size());
         Room nextRoom = dir.get(index);
-       dir.clear();
+        dir.clear();
         return nextRoom;
         
     }
