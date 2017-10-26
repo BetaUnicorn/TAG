@@ -1,7 +1,7 @@
 package tag;
 
 public class Monster implements NPC{
-
+    
     private String name;
     private int health;
     MonsterMovement move = new MonsterMovement();
@@ -16,6 +16,10 @@ public class Monster implements NPC{
         return move.takeTurn(currRoom);
     }
 
+    @Override
+    public String getName(){
+        return this.name;
+    }
     
     
 }
