@@ -19,7 +19,8 @@ public class GameController {
     private final Pickup pick = new Pickup();
     private final Trap trap = new Trap();
     private Room monsterCurrRoom;
-    Monster monster = new Monster("Lars", 10000);
+    // Burde rykkes til setup
+    NPC monster = new Monster("Lars", 10000);
 
     public void play() {
 
@@ -62,7 +63,7 @@ public class GameController {
             addRoomHistory(currRoom);
             currRoom = pInput();
             
-            monsterCurrRoom = monster.move.takeTurn(monsterCurrRoom);
+            monsterCurrRoom = monster.takeTurn(monsterCurrRoom);
             io.put(monsterCurrRoom.toString());
         }
 

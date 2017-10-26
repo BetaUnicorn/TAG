@@ -1,6 +1,6 @@
 package tag;
 
-public class Monster {
+public class Monster implements NPC{
 
     private String name;
     private int health;
@@ -11,4 +11,11 @@ public class Monster {
         this.health = health;
     }
 
+    @Override
+    public Room takeTurn(Room currRoom) {
+        return move.takeTurn(currRoom);
+    }
+
+    
+    
 }
