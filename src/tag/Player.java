@@ -3,7 +3,7 @@ package tag;
 public class Player {
 
     private String name;
-    private int health = 100;
+    private int health = 2;
     private int bank = 0;
     private final Bag bag = new Bag();
 

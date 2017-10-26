@@ -3,6 +3,7 @@ package tag;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import jdk.nashorn.internal.ir.BreakNode;
 import tag.items.Item;
 import textio.SysTextIO;
 import textio.TextIO;
@@ -19,7 +20,7 @@ public class GameController {
     private final Pickup pick = new Pickup();
     private final Trap trap = new Trap();
     private Room monsterCurrRoom;
-    
+    private Highscore highscore = new Highscore();
 
     public void play() {
         NPC monster = s.newNpc("Lars", 10000);
@@ -28,40 +29,46 @@ public class GameController {
         monsterCurrRoom = rooms.get(11);
 
         io.put("***********************************************************************************\n"
-                + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n" +
-                "Beyond this waterfall lies a small coridor.\n" +
-                 p.getName() + " wakes up in a coridor, without any recollection about how you got there,\n" +
-                "and a feeling of disarray.\n" +
-                "*********************************************************************************\n");
+                + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n"
+                + "Beyond this waterfall lies a small coridor.\n"
+                + p.getName() + " wakes up in a coridor, without any recollection about how you got there,\n"
+                + "and a feeling of disarray.\n"
+                + "*********************************************************************************\n");
 
         io.put("Welcome " + p.getName() + "\nPress enter to continue\n");
         io.get();
-        
+
         goLoop:
         while (play) {
+
             io.clear();
             io.put("_________________________________________\n");
             io.put("You are standing in " + currRoom.getName() + "\n");
             io.put("-----------------------------------------" + "\n");
             io.put(currRoom.getDesc() + "\n");
             io.put("-----------------------------------------\n");
-            
+
             if (currRoom.equals(rooms.get(11))) {
                 //io.close();
                 play = false;
                 break;
             }
-            
+
             io.put(getDir());
 
             pick.itemPickup(currRoom, p.getBag());
             pick.goldPickup(currRoom, p);
             trap.checkTrap(currRoom, p);
-            
+
+            if (p.getHealth() <= 0) {
+                deathNote();
+                play = false;
+                break;
+            }
 
             addRoomHistory(currRoom);
             currRoom = pInput();
-            
+
             monsterCurrRoom = monster.takeTurn(monsterCurrRoom);
             io.put(monsterCurrRoom.toString());
         }
@@ -152,11 +159,11 @@ public class GameController {
                     io.put("----------------------------------------------\n");
                     io.put(p.getName() + "\n"
                             + p.getHealth() + " HP \n"
-                            +p.getBank() + " Gold \n" );
+                            + p.getBank() + " Gold \n");
                     io.put("----------------------------------------------\n");
-                    
+
                     p.getBag().useItem(p);
-                    
+
                     break;
 
                 default:
@@ -194,8 +201,15 @@ public class GameController {
     public void addRoomHistory(Room room) {
         roomHist.add(room);
     }
-    
+
     public Room getRoom() {
         return currRoom;
     }
+
+    public void deathNote() {
+
+        io.put("You are dead \n");
+
+    }
+
 }
