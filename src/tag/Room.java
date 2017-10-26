@@ -10,6 +10,7 @@ public class Room {
     private Room north, east, west, south;
     private Trap trap;
     private Item item;
+    private RoomInventory inventory = new RoomInventory();
     
     
     public Room(String name, String desc, String feeling, int gold) {
@@ -84,11 +85,11 @@ public class Room {
         return trap;
     }
     
-    public void setItem(Item item) {
-        this.item = item;
+    public void addInventory(Item item) {
+        inventory.addBagItem(item);
     }
     
-    public Item getItem() {
-        return this.item;
+    public Inventory getInventory() {
+        return inventory;
     }
 }

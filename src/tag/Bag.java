@@ -5,11 +5,12 @@ import tag.items.Item;
 import textio.SysTextIO;
 import textio.TextIO;
 
-public class Bag {
+public class Bag implements Inventory{
 
     private final TextIO io = new TextIO(new SysTextIO());
     private ArrayList<Item> items = new ArrayList<>();
 
+    @Override
     public void addBagItem(Item item) {
         items.add(item);
     }
@@ -19,24 +20,12 @@ public class Bag {
         return items.toString();
     }
 
+    @Override
     public void removeItem(Item item) {
-        ArrayList<String> choices = new ArrayList<>();
-        
-        
-        for (int i = 0; i < items.size(); i++) {
-            choices.add(item.getName());
-        }
-        choices.add("Exit");
-        int index = io.select("Bag", choices, "");
-        if(index == items.size()){
-            //Exit
-        }else{
-            Item selected = items.get(index);
-            items.remove(selected);
-        }
-        
+        items.remove(item);
     }
     
+    @Override
     public void useItem(Player p) {
         ArrayList<String> choices = new ArrayList<>();
         
@@ -54,5 +43,18 @@ public class Bag {
             items.remove(selected);
         }
 
+    }
+
+    @Override
+    public ArrayList<Item> getInventory() {
+        return items;
+    }
+    
+    public int getBagSize() {
+        return items.size();
+    }
+
+    public String getName(int i) {
+        return items.get(i).getName();
     }
 }

@@ -3,8 +3,6 @@ package tag;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import jdk.nashorn.internal.ir.BreakNode;
-import tag.items.Item;
 import textio.SysTextIO;
 import textio.TextIO;
 
@@ -20,10 +18,11 @@ public class GameController {
     private final Pickup pick = new Pickup();
     private final Trap trap = new Trap();
     private Room monsterCurrRoom;
-    private Highscore highscore = new Highscore();
-    private Event event = new Event();
+    private final Highscore highscore = new Highscore();
+    private final Event event = new Event();
 
     public void play() throws IOException {
+        //Setup and player intro
         NPC monster = s.newNpc("Lars", 10000);
         rooms = s.createRooms();
         currRoom = rooms.get(0);
@@ -48,29 +47,35 @@ public class GameController {
             io.put("-----------------------------------------" + "\n");
             io.put(currRoom.getDesc() + "\n");
             io.put("-----------------------------------------\n");
-
+            
+            //Tests for if player has reached final room
             if (currRoom.equals(rooms.get(11))) {
                 //io.close();
                 play = false;
                 break;
             }
-
+            
+            //Prints available firections
             io.put(getDir());
-
-            pick.itemPickup(currRoom, p.getBag());
+            
+            //GOLD AND TRAP TEST
             pick.goldPickup(currRoom, p);
             trap.checkTrap(currRoom, p);
             
+            //Checks if player health if above 0, if not the game is lost
             if (p.getHealth() <= 0) {
                 deathNote();
                 play = false;
                 break;
             }
-
+            
+            //Add room to room history
             addRoomHistory(currRoom);
             
+            //Player takes turn
             currRoom = pInput();
             
+            //Checks for mpnster collision
             if (currRoom.equals(monsterCurrRoom)) {
                 event.monsterCollision(currRoom, monsterCurrRoom, p, monster);
                 play = false;
@@ -159,7 +164,9 @@ public class GameController {
                             + "E & EAST\tMove Eastern direction\n"
                             + "W & WEST\tMove Western direction\n"
                             + "Q & QUIT\tEnd Game\n"
-                            + "STATS\t\tSee stats\n"
+                            + "Inspect\t\tSee if the room contains items, and loot"
+                            + "Inv\t\tSee Inventory (Select item to use it)\n"
+                            + "STATS\t\tSee stats\n" 
                             + "\n");
                     break;
 
@@ -170,8 +177,18 @@ public class GameController {
                             + p.getBank() + " Gold \n");
                     io.put("----------------------------------------------\n");
 
+                    break;
+                
+                case "inspect":
+                    p.loot(currRoom, p);
+                    break;
+                    
+                case "inv":
                     p.getBag().useItem(p);
-
+                    break;
+                
+                case "trash":
+                    p.trash(currRoom, p);
                     break;
 
                 default:

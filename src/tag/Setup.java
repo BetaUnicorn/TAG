@@ -2,6 +2,7 @@ package tag;
 
 import java.util.ArrayList;
 import tag.items.Potion;
+import tag.items.WeirdPotion;
 import textio.SysTextIO;
 import textio.TextIO;
 
@@ -127,7 +128,9 @@ public class Setup {
         rooms.get(7).setTrap(new Trap(-5));
 
         //add items to rooms
-        rooms.get(1).setItem(new Potion(10, "Health Potion"));
+        rooms.get(1).addInventory(new Potion(20, "Health Potion"));
+        rooms.get(4).addInventory(new Potion(40, "Health Potion"));
+        rooms.get(2).addInventory(new WeirdPotion(35, "Weird Potion"));
         
         
         return rooms;

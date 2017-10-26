@@ -1,11 +1,10 @@
 package tag;
 
-import textio.SysTextIO;
-import textio.TextIO;
+import java.io.IOException;
 
 public class TAG {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         GameController g = new GameController();
         
         g.play();

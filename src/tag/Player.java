@@ -6,6 +6,7 @@ public class Player {
     private int health = 2;
     private int bank = 0;
     private final Bag bag = new Bag();
+    private final Pickup pickUp = new Pickup();
 
     public Player(String name) {
         this.name = name;
@@ -37,6 +38,14 @@ public class Player {
     public void addCoins(int amount) {
         bank += amount;
 
+    }
+    
+    public void loot(Room currRoom, Player p) {
+        pickUp.itemPickup(currRoom, p);
+    }
+    
+    public void trash(Room currRoom, Player p) {
+        pickUp.itemTrash(currRoom, p);
     }
 
 }
