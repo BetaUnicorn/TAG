@@ -50,7 +50,7 @@ public class GameController {
             
             //Tests for if player has reached final room
             if (currRoom.equals(rooms.get(11))) {
-                //io.close();
+                highscore.addScore(p);
                 play = false;
                 break;
             }
