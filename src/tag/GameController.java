@@ -51,8 +51,10 @@ public class GameController {
             //Tests for if player has reached final room
             if (currRoom.equals(rooms.get(11))) {
                 highscore.addScore(p);
+                io.put(highscore.showScores());
                 play = false;
                 break;
+                
             }
             
             //Prints available firections

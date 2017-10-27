@@ -69,7 +69,7 @@ public class Highscore {
         }
         reader.close();
 
-        newScore = oldScores.append(p.getName() + ", " + p.getBank() + "\r\n").toString();
+        newScore = oldScores.append(p.getName() + " " + p.getBank() + "\r\n").toString();
         FileWriter writer = new FileWriter("scores.txt");
         writer.write(newScore);
         writer.close();
