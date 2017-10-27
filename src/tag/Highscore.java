@@ -44,9 +44,10 @@ public class Highscore {
         File file = new File("scores.txt");
 
         BufferedReader reader = new BufferedReader(new FileReader(file));
-
-        while ((line = reader.readLine()) != null) {
+        int i = 0;
+        while ((line = reader.readLine()) != null && i < 10) {
             oldScores.append(line + "\r\n");
+            i++;
         }
         reader.close();
 
