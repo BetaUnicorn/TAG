@@ -15,7 +15,7 @@ public class GameController {
     private Room currRoom;
     private LinkedList<Room> roomHist = new LinkedList<>();
     private final Player p = s.newPlayer();
-    private final Pickup pick = new Pickup();
+    private final Action pick = new Action();
     private final Trap trap = new Trap();
     private Room monsterCurrRoom;
     private final Highscore highscore = new Highscore();

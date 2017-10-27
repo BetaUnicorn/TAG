@@ -6,7 +6,7 @@ public class Player {
     private int health = 2;
     private int bank = 0;
     private final Bag bag = new Bag();
-    private final Pickup pickUp = new Pickup();
+    private final Action pickUp = new Action();
 
     public Player(String name) {
         this.name = name;

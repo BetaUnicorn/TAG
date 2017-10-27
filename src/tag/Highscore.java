@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Highscore {    
     
     public String showScores() throws IOException{
-       StringBuilder oldScores = new StringBuilder();
+        StringBuilder oldScores = new StringBuilder();
         String line = "";
         
         File file = new File("scores.txt");
