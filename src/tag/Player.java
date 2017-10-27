@@ -45,13 +45,8 @@ public class Player {
         pickUp.itemPickup(currRoom, p);
     }
     
-    //Allows the player to trash a item, from inventory
-    public void trash(Room currRoom, Player p) {
-        pickUp.itemTrash(currRoom, p);
-    }
-    
-    public void useItem(Player p) {
-        pickUp.useItem(p);
+    public void useItem(Player p, Room currRoom) {
+        pickUp.useItem(p, currRoom);
     }
 
 }

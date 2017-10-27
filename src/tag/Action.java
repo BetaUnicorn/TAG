@@ -40,29 +40,11 @@ public class Action {
     }
     
     /**
-     * Takes a Room and a player, throws away an ITEM into the rooms INVENTORY
+     * Takes a Room and a player, displays player inventory and gives player options for what to do with items in inventory
      * @param Room
      * @param Player 
      */
-    public void itemTrash(Room currRoom, Player p) {
-        ArrayList<String> choices = new ArrayList<>();
-        
-        for (int i = 0; i < p.getBag().getBagSize(); i++) {
-            choices.add(p.getBag().getName(i));
-        }
-        choices.add("Exit");
-        int index = io.select("Bag:", choices, "");
-        if(index == p.getBag().getBagSize()){
-            //Exit
-        }else{
-            Item selected = p.getBag().getInventory().get(index);
-            currRoom.getInventory().addBagItem(selected);
-            p.getBag().removeItem(selected);
-            io.put("You threw away " + selected.getName() + " into the room\n");
-        }
-    }
-    
-    public void useItem(Player p) {
+    public void useItem(Player p, Room currRoom) {
         ArrayList<String> choices = new ArrayList<>();
         
         
@@ -75,8 +57,36 @@ public class Action {
             //Exit
         }else{
             Item selected = p.getBag().getInventory().get(index);
-            selected.effect(p);
-            p.getBag().getInventory().remove(selected);
+            io.put("What do you want to do with " + selected.getName() + "\n(t)hrow away, (u)se or (n)othing");
+            
+            
+            boolean validInput = false;
+            do {
+                String pInput = io.get();
+                //Throw away case
+                if (pInput.toLowerCase().equals("t") || pInput.toLowerCase().equals("trash")) {
+                    currRoom.getInventory().addBagItem(selected);
+                    p.getBag().removeItem(selected);
+                    io.put("You threw away " + selected.getName() + " into the room\n");
+                    validInput = true;
+                }
+                //Use uses item effect and removes it from player bag
+                else if (pInput.toLowerCase().equals("u") || pInput.toLowerCase().equals("use")) {
+                    selected.effect(p);
+                    p.getBag().getInventory().remove(selected);
+                    validInput = true;
+                }
+                //exit case
+                else if (pInput.toLowerCase().equals("n") || pInput.toLowerCase().equals("nothing")) {
+                    io.put("You put " + selected + " back in you bag.\n");
+                    validInput = true;
+                }
+                else {
+                    io.put("Please input a valid command.\n");
+                }
+            
+            } while (validInput == false);
+            
         }
 
     }

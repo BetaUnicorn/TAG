@@ -165,8 +165,7 @@ public class GameController {
                             + "W & WEST\tMove Western direction\n"
                             + "Q & QUIT\tEnd Game\n"
                             + "Inspect\t\tSee if the room contains items, and loot\n"
-                            + "Inv\t\tSee Inventory (Select item to use it)\n"
-                            + "Trash\t\tThrow an item from your inventory, into the room\n"
+                            + "Inv\t\tSee Inventory (Select item to use it or throw it away)\n"
                             + "STATS\t\tSee stats\n" 
                             + "\n");
                     break;
@@ -185,11 +184,7 @@ public class GameController {
                     break;
                     
                 case "inv":
-                    p.useItem(p);
-                    break;
-                
-                case "trash":
-                    p.trash(currRoom, p);
+                    p.useItem(p, currRoom);
                     break;
 
                 default:
