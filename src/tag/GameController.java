@@ -77,7 +77,7 @@ public class GameController {
             //Player takes turn
             currRoom = pInput();
             
-            //Checks for mpnster collision
+            //Checks for monster collision
             if (currRoom.equals(monsterCurrRoom)) {
                 event.monsterCollision(currRoom, monsterCurrRoom, p, monster);
                 play = false;
@@ -176,7 +176,9 @@ public class GameController {
                     io.put("----------------------------------------------\n");
                     io.put(p.getName() + "\n"
                             + p.getHealth() + " HP \n"
-                            + p.getBank() + " Gold \n");
+                            + p.getBank() + " Gold \n"
+                            + p.getWeaponEquipped());
+                            
                     io.put("----------------------------------------------\n");
 
                     break;

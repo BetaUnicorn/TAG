@@ -4,6 +4,7 @@ public class Monster implements NPC{
     
     private String name;
     private int health;
+    private int attack;
     MonsterMovement move = new MonsterMovement();
 
     public Monster(String name, int health) {
