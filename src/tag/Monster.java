@@ -5,7 +5,7 @@ public class Monster implements NPC{
     private String name;
     private int health;
     private int attack;
-    MonsterMovement move = new MonsterMovement();
+    RandomMovement move = new RandomMovement();
 
     public Monster(String name, int health) {
         this.name = name;
@@ -21,6 +21,19 @@ public class Monster implements NPC{
     public String getName(){
         return this.name;
     }
+
+    @Override
+    public void takeCombatTurn(Players p) {
+        System.out.println("Test");
+    }
     
+    public void changeHP(int dmg) {
+        this.health += dmg;
+    }
+
+    @Override
+    public int getHP() {
+        return health;
+    }
     
 }

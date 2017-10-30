@@ -18,7 +18,7 @@ public class Trap {
         return dmg;
     }
     
-    public void checkTrap(Room currRoom, Player p) {
+    public void checkTrap(Room currRoom, Human p) {
         if (currRoom.getTrap() != null) {
                 p.changeHP(currRoom.getTrapDmg());
                 io.put("********************************\n");

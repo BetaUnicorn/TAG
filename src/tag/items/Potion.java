@@ -1,6 +1,6 @@
 package tag.items;
 
-import tag.Player;
+import tag.Human;
 import textio.SysTextIO;
 import textio.TextIO;
 
@@ -16,7 +16,7 @@ public class Potion implements Item {
     }
 
     @Override
-    public void effect(Player p) {
+    public void effect(Human p) {
         p.changeHP(healAmount);
         io.put("____________________________________________________________\n");
         io.put("You healed yourself " + healAmount + " you now have " + p.getHealth() + " HP.\n");

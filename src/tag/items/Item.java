@@ -1,10 +1,10 @@
 package tag.items;
 
-import tag.Player;
+import tag.Human;
 
 public interface Item {
     
-    public void effect(Player p);
+    public void effect(Human p);
     
     public String getName();
     

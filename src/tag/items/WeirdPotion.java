@@ -1,6 +1,6 @@
 package tag.items;
 
-import tag.Player;
+import tag.Human;
 import textio.SysTextIO;
 import textio.TextIO;
 
@@ -15,7 +15,7 @@ public class WeirdPotion implements Item {
     }
 
     @Override
-    public void effect(Player p) {
+    public void effect(Human p) {
         p.changeHP(-dmgAmount);
         io.put("____________________________________________________________\n");
         io.put("You took " + dmgAmount + " From the weird looking potion. \nYou now have " + p.getHealth() + " HP.\n");

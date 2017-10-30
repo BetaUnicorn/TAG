@@ -7,7 +7,7 @@ import textio.TextIO;
 
 public class Action {
     private final TextIO io = new TextIO(new SysTextIO());
-    public void goldPickup(Room currRoom, Player p) {
+    public void goldPickup(Room currRoom, Human p) {
         if (currRoom.getGold() != 0) {
             p.addCoins(currRoom.getGold());
             io.put("You picked up " + currRoom.getGold() + " gold.\n");
@@ -20,7 +20,7 @@ public class Action {
      * @param Room
      * @param Player 
      */
-    public void itemPickup(Room currRoom, Player p) {
+    public void itemPickup(Room currRoom, Human p) {
         ArrayList<String> choices = new ArrayList<>();
         for (int i = 0; i < currRoom.getInventory().getInventory().size(); i++) {
             choices.add(currRoom.getInventory().getInventory().get(i).getName());
@@ -44,7 +44,7 @@ public class Action {
      * @param Room
      * @param Player 
      */
-    public void useItem(Player p, Room currRoom) {
+    public void useItem(Human p, Room currRoom) {
         ArrayList<String> choices = new ArrayList<>();
         
         
@@ -89,5 +89,53 @@ public class Action {
             
         }
 
+    }
+    
+    public void useItemCombat(Human p) {
+        ArrayList<String> choices = new ArrayList<>();
+        
+        
+        for (int i = 0; i < p.getBag().getBagSize(); i++) {
+            choices.add(p.getBag().getName(i));
+        }
+        choices.add("Exit");
+        int index = io.select("Bag", choices, "");
+        if(index == p.getBag().getBagSize()){
+            //Exit
+        }else{
+            Item selected = p.getBag().getInventory().get(index);
+            io.put("What do you want to do with " + selected.getName() + "\n(u)se item or (n)othing");
+            
+            
+            boolean validInput = false;
+            do {
+                String pInput = io.get();
+ 
+                //Use uses item effect and removes it from player bag
+                if (pInput.toLowerCase().equals("u") || pInput.toLowerCase().equals("use")) {
+                    selected.effect(p);
+                    p.getBag().getInventory().remove(selected);
+                    validInput = true;
+                }
+                //exit case
+                else if (pInput.toLowerCase().equals("n") || pInput.toLowerCase().equals("nothing")) {
+                    io.put("You put " + selected + " back in you bag.\n");
+                    validInput = true;
+                }
+                else {
+                    io.put("Please input a valid command.\n");
+                }
+            
+            } while (validInput == false);
+            
+        }
+
+    }
+    
+    
+    //Switch weapon from equipped to inventory!!!!!!
+    
+    public void attackAction(Players monster) {
+        
     }
 }

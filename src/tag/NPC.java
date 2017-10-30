@@ -1,7 +1,5 @@
 package tag;
 
-public interface NPC {
+public interface NPC extends Players{
     public Room takeTurn(Room currRoom);
-    
-    public String getName();
 }

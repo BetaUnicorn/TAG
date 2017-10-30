@@ -3,6 +3,7 @@ package tag;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import tag.items.Weapon;
 import textio.SysTextIO;
 import textio.TextIO;
 
@@ -13,25 +14,26 @@ public class GameController {
     private ArrayList<Room> rooms = new ArrayList<>();
     private boolean play = true;
     private Room currRoom;
+    private Room prevRoom;
     private LinkedList<Room> roomHist = new LinkedList<>();
-    private final Player p = s.newPlayer();
+    private final Human p = s.newPlayer();
     private final Action pick = new Action();
     private final Trap trap = new Trap();
     private Room monsterCurrRoom;
     private final Highscore highscore = new Highscore();
-    private final Event event = new Event();
 
     public void play() throws IOException {
         //Setup and player intro
         NPC monster = s.newNpc("Lars", 10000);
         rooms = s.createRooms();
         currRoom = rooms.get(0);
-        monsterCurrRoom = rooms.get(11);
+        monsterCurrRoom = rooms.get(2);
+        p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
 
         io.put("***********************************************************************************\n"
                 + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n"
                 + "Beyond this waterfall lies a small coridor.\n"
-                + p.getName() + " wakes up in a coridor, without any recollection about how you got there,\n"
+                + p.getName() + " wakes up in a coridor, with a rusty dagger at his side, without any recollection about how you got there,\n"
                 + "and a feeling of disarray.\n"
                 + "*********************************************************************************\n");
 
@@ -75,17 +77,16 @@ public class GameController {
             addRoomHistory(currRoom);
             
             //Player takes turn
+            prevRoom = currRoom;
             currRoom = pInput();
             
             //Checks for monster collision
             if (currRoom.equals(monsterCurrRoom)) {
-                event.monsterCollision(currRoom, monsterCurrRoom, p, monster);
-                play = false;
-                break;
+                io.put("***********************************************\n");
+                io.put("You met " + monster.getName()+ "\n");
+                io.put("***********************************************\n");
+                combatOptions(p, monster);
             }
-            
-            monsterCurrRoom = monster.takeTurn(monsterCurrRoom);
-            io.put(monsterCurrRoom.toString());
         }
 
         if (!roomHist.isEmpty()) {
@@ -200,8 +201,36 @@ public class GameController {
 
         return nextRoom;
     }
+    
+    public void combatOptions(Players p, Players monster) {
+        Combat c = new Combat();
+        boolean validInput = true;
+        io.put("(f)ight or (r)un\n");
+        do {
 
-    private String getDir() {
+            switch (io.get().toLowerCase()){
+                case "f":
+                case "fight":
+                    validInput = false;
+                    c.combatScenario(p, monster, currRoom);
+                    break;
+                case "r":
+                case "run":
+                    validInput = false;
+                    currRoom = prevRoom;
+                    io.put("You ran away from " + monster.getName() + ", into " + currRoom.getName() + "\n");
+                    break;
+                    
+                default:
+                    io.put("Please input a valid command.\n");
+                    break;
+            }
+            
+            
+        } while(validInput);
+    }
+
+    public String getDir() {
         StringBuilder str = new StringBuilder();
 
         str.append("You see doors in the following directions:  ");
@@ -239,6 +268,10 @@ public class GameController {
         io.put("You are dead \n");
         io.put("Here are all the people who did it better than you. \n");
         io.put(highscore.showScores());
+    }
+    
+    public void setCurrRoom(Room currRoom) {
+        this.currRoom = currRoom;
     }
 
 }

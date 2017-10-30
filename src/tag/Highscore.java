@@ -55,7 +55,7 @@ public class Highscore {
        
     }
 
-    public void addScore(Player p) throws FileNotFoundException, IOException {
+    public void addScore(Human p) throws FileNotFoundException, IOException {
         StringBuilder oldScores = new StringBuilder();
         String newScore;
         String line = "";

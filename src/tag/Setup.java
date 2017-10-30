@@ -10,11 +10,11 @@ import textio.TextIO;
 public class Setup {
 
     TextIO io = new TextIO(new SysTextIO());
-    Player p;
+    Human p;
 
-    public Player newPlayer() {
+    public Human newPlayer() {
         io.put("Input name: ");
-        return p = new Player(io.get());
+        return p = new Human(io.get());
     }
     
     public NPC newNpc(String name, int hp){
