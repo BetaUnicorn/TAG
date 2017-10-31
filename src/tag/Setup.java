@@ -1,6 +1,7 @@
 package tag;
 
 import java.util.ArrayList;
+import tag.items.Gold;
 import tag.items.Item;
 import tag.items.Potion;
 import tag.items.Weapon;
@@ -27,6 +28,7 @@ public class Setup {
         monsters.get(0).getInventory().addBagItem(new Potion(30, "Health Potion"));
         monsters.get(0).getInventory().addBagItem(new Potion(40, "Health Potion"));
         monsters.get(0).getInventory().addBagItem(monsters.get(0).getWeapon());
+        monsters.get(0).getInventory().addBagItem(new Gold(100));
         
         
         return monsters;
