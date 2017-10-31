@@ -24,11 +24,16 @@ public class Setup {
         monsters.add(new Monster("Lars", 10, new Weapon("Soul Edge", 10)));
         monsters.add(new Monster("Iron Fist", 30, new Weapon("Iron Fists", 20)));
         
-        
+        //Lars Inventory
         monsters.get(0).getInventory().addBagItem(new Potion(30, "Health Potion"));
         monsters.get(0).getInventory().addBagItem(new Potion(40, "Health Potion"));
         monsters.get(0).getInventory().addBagItem(monsters.get(0).getWeapon());
         monsters.get(0).getInventory().addBagItem(new Gold(100));
+        
+        //IronFist Inventory
+        //monsters.get(1).getInventory().addBagItem(item);
+        
+        
         
         
         return monsters;

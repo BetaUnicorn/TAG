@@ -29,6 +29,7 @@ public class Action {
             Item selected = currRoom.getInventory().getInventory().get(index);
             if (selected instanceof Gold) {
                 selected.effect(p);
+                currRoom.getInventory().removeItem(selected);
                 io.put("You looted " + selected.getName() + "\n");
             } else {
                 p.getBag().addBagItem(selected);
