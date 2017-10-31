@@ -9,6 +9,13 @@ public class Combat {
     while (combat) {
         p.takeCombatTurn(monster);
         monster.takeCombatTurn(p);
+        if(p.getHP() <= 0){
+            break;
+        }
+        else if(monster.getHP() <= 0)
+        {
+            break;
+        }
     }
     }
     

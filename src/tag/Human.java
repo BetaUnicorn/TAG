@@ -79,6 +79,10 @@ public class Human implements Players{
         boolean validInput = true;
         
         do {
+            if(this.health <= 0){
+                break;
+            }
+            
             io.put("(a)ttack or (inv)entory\n");
             switch (io.get().toLowerCase()) {
                 case "attack":
