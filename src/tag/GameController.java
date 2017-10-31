@@ -12,6 +12,7 @@ public class GameController {
     private final Setup s = new Setup();
     private final TextIO io = new TextIO(new SysTextIO());
     private ArrayList<Room> rooms = new ArrayList<>();
+    private ArrayList<NPC> monsters = new ArrayList<>();
     private boolean play = true;
     private Room currRoom;
     private Room prevRoom;
@@ -25,10 +26,10 @@ public class GameController {
 
     public void play() throws IOException {
         //Setup and player intro
-        NPC monster = s.newNpc("Lars", 10000, new Weapon("Soul Edge", 20));
+        monsters = s.newNpc();
         rooms = s.createRooms();
         currRoom = rooms.get(0);
-        monsterCurrRoom = rooms.get(2);
+        monsters.get(0).setRoom(rooms.get(2));
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
 
         io.put("***********************************************************************************\n"
@@ -78,16 +79,18 @@ public class GameController {
             addRoomHistory(currRoom);
             
             //Checks for monster collision
-            if (currRoom.equals(monsterCurrRoom)) {
-                io.put("***********************************************\n");
-                io.put("You met " + monster.getName()+ "\n");
-                io.put("***********************************************\n");
-                isDead = combatOptions(p, monster);
-                if (isDead == true) {
-                    deathNote();
-                    break;
+            for(int i = 0; i < monsters.size(); i++) {
+                if (currRoom.equals(monsters.get(i).getCurrRoom())) {
+                    io.put("***********************************************\n");
+                    io.put("You met " + monsters.get(i).getName() + "\n");
+                    io.put("***********************************************\n");
+                    isDead = combatOptions(p, monsters.get(i));
+                    if (isDead == true) {
+                        deathNote();
+                        break;
+                    }
+
                 }
-                
             }
             
             //Player takes turn

@@ -1,6 +1,7 @@
 package tag;
 
 import java.util.ArrayList;
+import tag.items.Item;
 import tag.items.Potion;
 import tag.items.Weapon;
 import tag.items.WeirdPotion;
@@ -17,8 +18,18 @@ public class Setup {
         return p = new Human(io.get());
     }
     
-    public NPC newNpc(String name, int hp, Weapon equippedWeapon){
-        return new Monster(name, hp, equippedWeapon);
+    public ArrayList<NPC> newNpc(){
+        ArrayList<NPC> monsters = new ArrayList<>();
+        monsters.add(new Monster("Lars", 10, new Weapon("Soul Edge", 10)));
+        monsters.add(new Monster("Iron Fist", 30, new Weapon("Iron Fists", 20)));
+        
+        
+        monsters.get(0).getInventory().addBagItem(new Potion(30, "Health Potion"));
+        monsters.get(0).getInventory().addBagItem(new Potion(40, "Health Potion"));
+        monsters.get(0).getInventory().addBagItem(monsters.get(0).getWeapon());
+        
+        
+        return monsters;
     }
 
     public ArrayList<Room> createRooms() {
