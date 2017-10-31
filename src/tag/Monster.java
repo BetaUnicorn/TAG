@@ -13,6 +13,7 @@ public class Monster implements NPC {
     RandomMovement move = new RandomMovement();
     private final TextIO io = new TextIO(new SysTextIO());
     private boolean isDead;
+    private MonsterInventory inventory = new MonsterInventory();
 
     public Monster(String name, int health, Weapon equippedWeapon) {
         this.name = name;
@@ -50,6 +51,11 @@ public class Monster implements NPC {
     @Override
     public int getHP() {
         return health;
+    }
+    
+    @Override
+    public MonsterInventory getInventory(){
+        return inventory;
     }
 
 }

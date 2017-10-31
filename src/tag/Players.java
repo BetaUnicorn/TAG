@@ -8,4 +8,5 @@ public interface Players {
     public void changeHP(int dmg);
     
     public int getHP();
+
 }

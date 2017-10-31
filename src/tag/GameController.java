@@ -208,7 +208,7 @@ public class GameController {
         return nextRoom;
     }
     
-    public boolean combatOptions(Players p, Players monster) {
+    public boolean combatOptions(Players p, NPC monster) {
         Combat c = new Combat();
         boolean isDead = false;
         boolean validInput = true;

@@ -4,8 +4,9 @@ package tag;
 
 public class Combat {
     
-    public boolean combatScenario(Players p, Players monster, Room currRoom) {
+    public boolean combatScenario(Players p, NPC monster, Room currRoom) {
     boolean combat = true;
+    Action action = new Action();
         
     while (combat) {
         p.takeCombatTurn(monster);
@@ -15,6 +16,7 @@ public class Combat {
         }
         else if(monster.getHP() <= 0)
         {
+            action.monsterDrop(currRoom, monster);
             break;
         }
     }

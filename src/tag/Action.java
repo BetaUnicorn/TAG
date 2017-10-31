@@ -132,10 +132,13 @@ public class Action {
 
     }
     
+    public void monsterDrop(Room monsterCurrRoom, NPC monster){
+        for(int i = 0; i < monster.getInventory().getInventory().size(); i++){
+            monsterCurrRoom.addInventory(monster.getInventory().getInventory().get(i));
+        }
+    }
+    
     
     //Switch weapon from equipped to inventory!!!!!!
     
-    public void attackAction(Players monster) {
-        
-    }
 }
