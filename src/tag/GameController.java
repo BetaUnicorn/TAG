@@ -84,6 +84,7 @@ public class GameController {
                 io.put("***********************************************\n");
                 isDead = combatOptions(p, monster);
                 if (isDead == true) {
+                    deathNote();
                     break;
                 }
                 
