@@ -75,12 +75,12 @@ public class Human implements Players{
 
  
     @Override
-    public void takeCombatTurn(Players monster) {
+    public boolean takeCombatTurn(Players monster) {
         boolean validInput = true;
         
         do {
             if(this.health <= 0){
-                break;
+                return true;
             }
             
             io.put("(a)ttack or (inv)entory\n");
@@ -102,6 +102,7 @@ public class Human implements Players{
             }
         } while (validInput);
         
+        return false;
     }
 
     @Override

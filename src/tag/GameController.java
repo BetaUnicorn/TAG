@@ -21,6 +21,7 @@ public class GameController {
     private final Trap trap = new Trap();
     private Room monsterCurrRoom;
     private final Highscore highscore = new Highscore();
+    private boolean isDead = false;
 
     public void play() throws IOException {
         //Setup and player intro
@@ -76,17 +77,21 @@ public class GameController {
             //Add room to room history
             addRoomHistory(currRoom);
             
-            //Player takes turn
-            prevRoom = currRoom;
-            currRoom = pInput();
-            
             //Checks for monster collision
             if (currRoom.equals(monsterCurrRoom)) {
                 io.put("***********************************************\n");
                 io.put("You met " + monster.getName()+ "\n");
                 io.put("***********************************************\n");
-                combatOptions(p, monster);
+                isDead = combatOptions(p, monster);
+                if (isDead == true) {
+                    break;
+                }
+                
             }
+            
+            //Player takes turn
+            prevRoom = currRoom;
+            currRoom = pInput();
         }
 
         if (!roomHist.isEmpty()) {
@@ -202,8 +207,9 @@ public class GameController {
         return nextRoom;
     }
     
-    public void combatOptions(Players p, Players monster) {
+    public boolean combatOptions(Players p, Players monster) {
         Combat c = new Combat();
+        boolean isDead = false;
         boolean validInput = true;
         io.put("(f)ight or (r)un\n");
         do {
@@ -212,8 +218,8 @@ public class GameController {
                 case "f":
                 case "fight":
                     validInput = false;
-                    c.combatScenario(p, monster, currRoom);
-                    break;
+                    isDead = c.combatScenario(p, monster, currRoom);
+                    return isDead;
                 case "r":
                 case "run":
                     validInput = false;
@@ -228,6 +234,7 @@ public class GameController {
             
             
         } while(validInput);
+        return isDead;
     }
 
     public String getDir() {

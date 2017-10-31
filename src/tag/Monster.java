@@ -12,6 +12,7 @@ public class Monster implements NPC {
     private Weapon equippedWeapon;
     RandomMovement move = new RandomMovement();
     private final TextIO io = new TextIO(new SysTextIO());
+    private boolean isDead;
 
     public Monster(String name, int health, Weapon equippedWeapon) {
         this.name = name;
@@ -30,14 +31,16 @@ public class Monster implements NPC {
     }
 
     @Override
-    public void takeCombatTurn(Players p) {
+    public boolean takeCombatTurn(Players p) {
         if(this.health <= 0){
             io.put("TEST");
+            return isDead = true;
         }
         
         io.put(this.name + " attacked you with " + this.equippedWeapon.getName() + "\n");
         p.changeHP(-equippedWeapon.getDamage());
         io.put(p.getName() + " now has " + p.getHP() + " HP left.\n");
+        return false;
     }
 
     public void changeHP(int dmg) {

@@ -1,7 +1,7 @@
 package tag;
 
 public interface Players {
-    public void takeCombatTurn(Players p);
+    public boolean takeCombatTurn(Players p);
     
     public String getName();
     
