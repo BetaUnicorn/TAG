@@ -64,8 +64,7 @@ public class GameController {
             //Prints available firections
             io.put(getDir());
             
-            //GOLD AND TRAP TEST
-            pick.goldPickup(currRoom, p);
+            //TRAP TEST
             trap.checkTrap(currRoom, p);
             
             //Checks if player health if above 0, if not the game is lost

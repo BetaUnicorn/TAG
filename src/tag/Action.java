@@ -10,14 +10,6 @@ public class Action {
 
     private final TextIO io = new TextIO(new SysTextIO());
 
-    public void goldPickup(Room currRoom, Human p) {
-        if (currRoom.getGold() != 0) {
-            p.addCoins(currRoom.getGold());
-            io.put("You picked up " + currRoom.getGold() + " gold.\n");
-            currRoom.setGold(0);
-        }
-    }
-
     /**
      * Takes a Room and a player, add ITEM to player INVENTORY
      *

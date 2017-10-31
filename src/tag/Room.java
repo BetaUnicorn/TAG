@@ -6,17 +6,15 @@ public class Room {
     private final String name;
     private final String desc;
     private final String feeling;
-    private int gold;
     private Room north, east, west, south;
     private Trap trap;
     private RoomInventory inventory = new RoomInventory();
     
     
-    public Room(String name, String desc, String feeling, int gold) {
+    public Room(String name, String desc, String feeling) {
         this.name = name;
         this.desc = desc;
         this.feeling = feeling;
-        this.gold = gold;
     }
 
     public void setNorth(Room north) {
@@ -62,14 +60,6 @@ public class Room {
     @Override
     public String toString() {
         return name;
-    }
-
-    public int getGold() {
-        return gold;
-    }
-
-    public void setGold(int gold) {
-        this.gold = gold;
     }
     
     public void setTrap(Trap trap) {
