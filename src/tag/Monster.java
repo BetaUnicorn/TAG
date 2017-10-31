@@ -34,7 +34,7 @@ public class Monster implements NPC {
     public boolean takeCombatTurn(Players p) {
         if(this.health <= 0){
             io.put("TEST");
-            return isDead = true;
+            return isDead = false;
         }
         
         io.put(this.name + " attacked you with " + this.equippedWeapon.getName() + "\n");
