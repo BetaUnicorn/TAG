@@ -18,6 +18,10 @@ public class Weapon implements Item {
 
     @Override
     public void effect(Human p) {
+        if (p.getEquippedWeapon() != null) {
+            p.getBag().addBagItem(p.getEquippedWeapon());
+        }
+
         p.setEquippedWeapon(this);
         io.put("____________________________________________________________\n");
         io.put("You equipped " + getName() + "\n");
