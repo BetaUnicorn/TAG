@@ -17,8 +17,8 @@ public class Setup {
         return p = new Human(io.get());
     }
     
-    public NPC newNpc(String name, int hp){
-        return new Monster(name, hp);
+    public NPC newNpc(String name, int hp, Weapon equippedWeapon){
+        return new Monster(name, hp, equippedWeapon);
     }
 
     public ArrayList<Room> createRooms() {

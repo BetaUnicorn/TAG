@@ -86,10 +86,12 @@ public class Human implements Players{
                     io.put("You attacked " + monster.getName() + " with your " + equippedWeapon.getName() + " for " + equippedWeapon.getDamage() + " damage!\n");
                     monster.changeHP(-equippedWeapon.getDamage());
                     io.put(monster.getName() + " now has " + monster.getHP() + " HP left.\n");
+                    validInput = false;
                     break;
                 case "inv":
                 case "inventory":
                     action.useItemCombat(this);
+                    validInput = false;
                     break;
                 default:
                     io.put("Please input valid command.\n");

@@ -24,7 +24,7 @@ public class GameController {
 
     public void play() throws IOException {
         //Setup and player intro
-        NPC monster = s.newNpc("Lars", 10000);
+        NPC monster = s.newNpc("Lars", 10000, new Weapon("Soul Edge", 20));
         rooms = s.createRooms();
         currRoom = rooms.get(0);
         monsterCurrRoom = rooms.get(2);
