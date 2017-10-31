@@ -1,6 +1,7 @@
 
 package tag;
 
+import java.util.ArrayList;
 import textio.SysTextIO;
 import textio.TextIO;
 
@@ -8,7 +9,7 @@ import textio.TextIO;
 public class Combat {
     private final TextIO io = new TextIO(new SysTextIO());
     
-    public boolean combatScenario(Players p, NPC monster, Room currRoom) {
+    public boolean combatScenario(Players p, NPC monster, Room currRoom, ArrayList<NPC> monsters) {
 
         boolean combat = true;
         Action action = new Action();
@@ -23,6 +24,7 @@ public class Combat {
             {
                 io.put(monster.getName() + " died and may have dropped phat lootz, try inspect to see what." );
                 action.monsterDrop(currRoom, monster);
+                monsters.remove(monster);
                 break;
             }
         }

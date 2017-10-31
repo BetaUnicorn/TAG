@@ -222,7 +222,7 @@ public class GameController {
                 case "f":
                 case "fight":
                     validInput = false;
-                    isDead = c.combatScenario(p, monster, currRoom);
+                    isDead = c.combatScenario(p, monster, currRoom, monsters);
                     return isDead;
                 case "r":
                 case "run":

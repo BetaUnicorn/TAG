@@ -35,6 +35,9 @@ public class Monster implements NPC {
 
     @Override
     public boolean takeCombatTurn(Players p) {
+        if(this.health <= 0){
+            return true;
+        }
         io.put(this.name + " attacked you with " + this.equippedWeapon.getName() + "\n");
         p.changeHP(-equippedWeapon.getDamage());
         io.put(p.getName() + " now has " + p.getHP() + " HP left.\n");
