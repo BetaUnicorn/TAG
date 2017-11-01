@@ -81,4 +81,8 @@ public class Room {
     public Inventory getInventory() {
         return inventory;
     }
+    
+    public String getFeeling(){
+        return this.feeling;
+    }
 }

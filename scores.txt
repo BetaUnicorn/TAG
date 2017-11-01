@@ -2,6 +2,7 @@ TheLegend27 500
 Martin 315
 Martin 290
 Ralle 270
+Martin 110
 daww 40
 wadawd 33
 aawd 33
@@ -12,5 +13,8 @@ wadaw 33
 test 15
 asaf 10
 Martin 10
+Martin 10
 eefe 0
 wadwa 0
+sdf 0
+asdf 0

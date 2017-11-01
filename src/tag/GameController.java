@@ -30,7 +30,7 @@ public class GameController {
         rooms = s.createRooms();
         currRoom = rooms.get(0);
         monsters.get(0).setRoom(rooms.get(2));
-        monsters.get(1).setRoom(rooms.get(5));
+        monsters.get(1).setRoom(rooms.get(11));
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
 
         io.put("***********************************************************************************\n"
@@ -50,36 +50,47 @@ public class GameController {
             io.put("_________________________________________\n");
             io.put("You are standing in " + currRoom.getName() + "\n");
             io.put("-----------------------------------------" + "\n");
-            io.put(currRoom.getDesc() + "\n");
+            io.put(currRoom.getDesc());
             io.put("-----------------------------------------\n");
-            
+            io.put(currRoom.getFeeling() + "\n");
+            io.put("-----------------------------------------\n");
+
             //Tests for if player has reached final room
-            if (currRoom.equals(rooms.get(11))) {
+            if (monsters.get(monsters.size() - 1).getCurrRoom().equals(currRoom)) {
+                io.put("***********************************************\n");
+                io.put("You met " + monsters.get(monsters.size() - 1).getName() + "\n");
+                io.put("***********************************************\n");
+                isDead = combatOptions(p, monsters.get(monsters.size() - 1));
+                if (isDead == true) {
+                    deathNote();
+                    break;
+                }
+                addRoomHistory(currRoom);
                 highscore.addScore(p);
                 io.put(highscore.showScores());
                 play = false;
                 break;
-                
+
             }
-            
+
             //Prints available firections
             io.put(getDir());
-            
+
             //TRAP TEST
             trap.checkTrap(currRoom, p);
-            
+
             //Checks if player health if above 0, if not the game is lost
             if (p.getHealth() <= 0) {
                 deathNote();
                 play = false;
                 break;
             }
-            
+
             //Add room to room history
             addRoomHistory(currRoom);
-            
+
             //Checks for monster collision
-            for(int i = 0; i < monsters.size(); i++) {
+            for (int i = 0; i < monsters.size(); i++) {
                 if (currRoom.equals(monsters.get(i).getCurrRoom())) {
                     io.put("***********************************************\n");
                     io.put("You met " + monsters.get(i).getName() + "\n");
@@ -92,7 +103,7 @@ public class GameController {
 
                 }
             }
-            
+
             //Player takes turn
             prevRoom = currRoom;
             currRoom = pInput();
@@ -179,7 +190,7 @@ public class GameController {
                             + "INSPECT\t\tSee if the room contains items, and loot\n"
                             + "INV\t\tSee Inventory (Select item to use it or throw it away)\n"
                             + "STATS\t\tSee stats\n"
-                            + "DIR\t\tShow possible directions" 
+                            + "DIR\t\tShow possible directions"
                             + "\n");
                     break;
 
@@ -189,15 +200,15 @@ public class GameController {
                             + p.getHealth() + " HP \n"
                             + p.getBank() + " Gold \n"
                             + p.getWeaponEquipped());
-                            
+
                     io.put("----------------------------------------------\n");
 
                     break;
-                
+
                 case "inspect":
                     p.loot(currRoom, p);
                     break;
-                    
+
                 case "inv":
                     p.useItem(p, currRoom);
                     break;
@@ -214,7 +225,7 @@ public class GameController {
 
         return nextRoom;
     }
-    
+
     public boolean combatOptions(Players p, NPC monster) {
         Combat c = new Combat();
         boolean isDead = false;
@@ -222,7 +233,7 @@ public class GameController {
         io.put("(f)ight or (r)un\n");
         do {
 
-            switch (io.get().toLowerCase()){
+            switch (io.get().toLowerCase()) {
                 case "f":
                 case "fight":
                     validInput = false;
@@ -234,14 +245,13 @@ public class GameController {
                     currRoom = prevRoom;
                     io.put("You ran away from " + monster.getName() + ", into " + currRoom.getName() + "\n");
                     break;
-                    
+
                 default:
                     io.put("Please input a valid command.\n");
                     break;
             }
-            
-            
-        } while(validInput);
+
+        } while (validInput);
         return isDead;
     }
 
@@ -274,7 +284,7 @@ public class GameController {
     public Room getRoom() {
         return currRoom;
     }
-    
+
     public void setPlay(boolean play) {
         this.play = play;
     }
@@ -284,7 +294,7 @@ public class GameController {
         io.put("Here are all the people who did it better than you. \n");
         io.put(highscore.showScores());
     }
-    
+
     public void setCurrRoom(Room currRoom) {
         this.currRoom = currRoom;
     }
