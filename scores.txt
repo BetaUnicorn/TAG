@@ -15,7 +15,9 @@ test 15
 asaf 10
 Martin 10
 Martin 10
+wadaw 5
 eefe 0
 wadwa 0
 sdf 0
 asdf 0
+dwad 0
