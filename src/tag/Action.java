@@ -11,7 +11,7 @@ public class Action {
     private final TextIO io = new TextIO(new SysTextIO());
 
     /**
-     * Takes a Room and a player, add ITEM to player INVENTORY
+     * Let's player loot item from Room inventory and loops either till all items is looted or exit is chosen.
      *
      * @param Room
      * @param Player
@@ -93,6 +93,10 @@ public class Action {
 
     }
 
+    /**
+     * Uses item without (use/teash/nothing menu)
+     * @param p 
+     */
     public void useItemCombat(Human p) {
         ArrayList<String> choices = new ArrayList<>();
 
