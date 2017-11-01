@@ -151,7 +151,7 @@ public class Setup {
         rooms.get(4).addInventory(new Potion(40, "Health Potion"));
         rooms.get(3).addInventory(new WeirdPotion(35, "Weird Potion"));
         rooms.get(1).addInventory(new Weapon("Bastard Sword", 10));
-        rooms.get(5).addInventory(new Potion(40, ""));
+        rooms.get(5).addInventory(new Potion(40, "Health Potion"));
         
         
         //ADD GOLD TO ROOMS
