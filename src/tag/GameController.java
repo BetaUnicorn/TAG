@@ -30,7 +30,12 @@ public class GameController {
         rooms = s.createRooms();
         currRoom = rooms.get(0);
         monsters.get(0).setRoom(rooms.get(2));
-        monsters.get(1).setRoom(rooms.get(11));
+        monsters.get(1).setRoom(rooms.get(4));
+        monsters.get(2).setRoom(rooms.get(6));
+        monsters.get(3).setRoom(rooms.get(7));
+        monsters.get(4).setRoom(rooms.get(9));
+        monsters.get(5).setRoom(rooms.get(11));
+        
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
 
         io.put("***********************************************************************************\n"

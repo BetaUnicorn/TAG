@@ -23,6 +23,12 @@ public class Setup {
         ArrayList<NPC> monsters = new ArrayList<>();
         monsters.add(new Monster("Lars, The Dragon", 10, new Weapon("Soul Edge", 10)));
         monsters.add(new Monster("Iron Fist", 30, new Weapon("Iron Fists", 20)));
+        monsters.add(new Monster("Ogre", 40, new Weapon("Fire breath", 30)));
+        monsters.add(new Monster("The Joker", 50, new Weapon("Gun", 35)));
+        monsters.add(new Monster("King Dedede", 55, new Weapon("Hammer", 40)));
+        monsters.add(new Monster("Deathwing", 60, new Weapon("World ending breath", 50)));
+        
+        
         
         //Lars Inventory
         monsters.get(0).getInventory().addBagItem(new Potion(30, "Health Potion"));
@@ -31,7 +37,21 @@ public class Setup {
         monsters.get(0).getInventory().addBagItem(new Gold(100));
         
         //IronFist Inventory
-        //monsters.get(1).getInventory().addBagItem(item);
+        monsters.get(1).getInventory().addBagItem(new Potion(20, "Health Potion"));
+        monsters.get(1).getInventory().addBagItem(monsters.get(1).getWeapon());
+        
+        //Ogre inventory
+        monsters.get(2).getInventory().addBagItem(new Potion(30, "Health Potion"));
+        monsters.get(2).getInventory().addBagItem(monsters.get(2).getWeapon());
+        
+        //The Joker
+        monsters.get(3).getInventory().addBagItem(new Potion(20, "Health Potion"));
+        monsters.get(3).getInventory().addBagItem(monsters.get(3).getWeapon());
+        
+        //King Dedede
+        monsters.get(4).getInventory().addBagItem(new Potion(30, "Health Potion"));
+        monsters.get(4).getInventory().addBagItem(monsters.get(4).getWeapon());
+        
         
         
         

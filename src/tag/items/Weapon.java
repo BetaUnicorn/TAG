@@ -11,8 +11,8 @@ public class Weapon implements Item {
     private int damage;
 
     public Weapon(String name, int damage) {
-        this.name = name;
         this.damage = damage;
+        this.name = name + "(" + damage + "DMG)";
 
     }
 
