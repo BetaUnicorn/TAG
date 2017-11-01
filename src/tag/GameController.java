@@ -62,6 +62,7 @@ public class GameController {
 
             //Tests for if player has reached final room
             if (monsters.get(monsters.size() - 1).getCurrRoom().equals(currRoom)) {
+             
                 io.put("***********************************************\n");
                 io.put("You met " + monsters.get(monsters.size() - 1).getName() + "\n");
                 io.put("***********************************************\n");
@@ -235,11 +236,12 @@ public class GameController {
         return nextRoom;
     }
 
-    public boolean combatOptions(Players p, NPC monster) {
+    public boolean combatOptions(Players p, NPC monster) throws IOException {
         Combat c = new Combat();
         boolean isDead = false;
         boolean validInput = true;
         io.put("(f)ight or (r)un\n");
+        c.music();
         do {
 
             switch (io.get().toLowerCase()) {
@@ -250,6 +252,7 @@ public class GameController {
                     return isDead;
                 case "r":
                 case "run":
+                    c.stopMusic();
                     validInput = false;
                     currRoom = prevRoom;
                     io.put("You ran away from " + monster.getName() + ", into " + currRoom.getName() + "\n");
