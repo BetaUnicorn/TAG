@@ -22,7 +22,7 @@ public class Combat {
             }
             else if(monster.getHP() <= 0)
             {
-                io.put(monster.getName() + " died and may have dropped phat lootz, try inspect to see what." );
+                io.put(monster.getName() + " died and may have dropped phat lootz, try inspect to see what.\n" );
                 action.monsterDrop(currRoom, monster);
                 monsters.remove(monster);
                 break;

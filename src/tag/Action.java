@@ -18,13 +18,16 @@ public class Action {
      */
     public void itemPickup(Room currRoom, Human p) {
         ArrayList<String> choices = new ArrayList<>();
+        int index = 0;
+        do {
+        choices.clear();
         for (int i = 0; i < currRoom.getInventory().getInventory().size(); i++) {
             choices.add(currRoom.getInventory().getInventory().get(i).getName());
         }
         choices.add("Exit");
-        int index = io.select("The room holds:", choices, "");
+        index = io.select("The room holds:", choices, "");
         if (index == currRoom.getInventory().getInventory().size()) {
-            //Exit
+            //exit
         } else {
             Item selected = currRoom.getInventory().getInventory().get(index);
             if (selected instanceof Gold) {
@@ -38,7 +41,7 @@ public class Action {
             }
 
         }
-
+        } while (index != currRoom.getInventory().getInventory().size());
     }
 
     /**

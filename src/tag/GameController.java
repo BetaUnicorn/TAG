@@ -30,6 +30,7 @@ public class GameController {
         rooms = s.createRooms();
         currRoom = rooms.get(0);
         monsters.get(0).setRoom(rooms.get(2));
+        monsters.get(1).setRoom(rooms.get(5));
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
 
         io.put("***********************************************************************************\n"
@@ -175,9 +176,10 @@ public class GameController {
                             + "E & EAST\tMove Eastern direction\n"
                             + "W & WEST\tMove Western direction\n"
                             + "Q & QUIT\tEnd Game\n"
-                            + "Inspect\t\tSee if the room contains items, and loot\n"
-                            + "Inv\t\tSee Inventory (Select item to use it or throw it away)\n"
-                            + "STATS\t\tSee stats\n" 
+                            + "INSPECT\t\tSee if the room contains items, and loot\n"
+                            + "INV\t\tSee Inventory (Select item to use it or throw it away)\n"
+                            + "STATS\t\tSee stats\n"
+                            + "DIR\t\tShow possible directions" 
                             + "\n");
                     break;
 
@@ -198,6 +200,9 @@ public class GameController {
                     
                 case "inv":
                     p.useItem(p, currRoom);
+                    break;
+                case "dir":
+                    io.put(getDir());
                     break;
 
                 default:
