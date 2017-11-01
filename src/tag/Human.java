@@ -7,7 +7,7 @@ import textio.TextIO;
 public class Human implements Players{
 
     private String name;
-    private int health = 100;
+    private int health = 150;
     private int bank = 0;
     private Weapon equippedWeapon;
     private final Bag bag = new Bag();
@@ -34,8 +34,8 @@ public class Human implements Players{
     @Override
     public void changeHP(int hp) {
         health += hp;
-        if (health > 100) {
-            health = 100;
+        if (health > 150) {
+            health = 150;
         }
     }
 
