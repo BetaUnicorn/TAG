@@ -74,6 +74,10 @@ public class GameController {
                 highscore.addScore(p);
                 io.put(highscore.showScores());
                 play = false;
+                io.put("you look at the dead body of deathwing. \n"
+                        + "In the distance you see a door with light surrounding it and starts to walk towards it.\n"
+                        + "You open it and suddenly you're standing on field, filled with happy bunnies and candy!\n"
+                        + "YOU ARE HAPPY!");
                 break;
 
             }
