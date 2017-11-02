@@ -37,7 +37,10 @@ public class GameController {
         monsters.get(5).setRoom(rooms.get(11));
         
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
-
+        
+        //starts background music
+        Music.bgMusic();
+        
         io.put("***********************************************************************************\n"
                 + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n"
                 + "Beyond this waterfall lies a small coridor.\n"
@@ -241,7 +244,7 @@ public class GameController {
         boolean isDead = false;
         boolean validInput = true;
         io.put("(f)ight or (r)un\n");
-        c.music();
+        Music.battleMusic();
         do {
 
             switch (io.get().toLowerCase()) {
@@ -252,7 +255,7 @@ public class GameController {
                     return isDead;
                 case "r":
                 case "run":
-                    c.stopMusic();
+                    Music.stopMusic();
                     validInput = false;
                     currRoom = prevRoom;
                     io.put("You ran away from " + monster.getName() + ", into " + currRoom.getName() + "\n");

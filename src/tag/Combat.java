@@ -13,8 +13,7 @@ import textio.TextIO;
 public class Combat {
 
     private final TextIO io = new TextIO(new SysTextIO());
-    AudioPlayer player = AudioPlayer.player;
-    AudioStream stream;
+
 
     public boolean combatScenario(Players p, NPC monster, Room currRoom, ArrayList<NPC> monsters) {
 
@@ -30,35 +29,12 @@ public class Combat {
                 io.put(monster.getName() + " died and may have dropped phat lootz, try inspect to see what.\n");
                 action.monsterDrop(currRoom, monster);
                 monsters.remove(monster);
-                stopMusic();
+                Music.stopMusic();
                 break;
             }
         }
         return false;
     }
 
-    public void music() throws FileNotFoundException, IOException {
-
-        try {
-
-            InputStream battleMusic = new FileInputStream("long.wav");
-
-            stream = new AudioStream(battleMusic);
-            player.start(stream);
-        }
-        
-        catch(FileNotFoundException e){
-            
-        }
-        catch(IOException e){
-            
-        }
-    }
-
-    public void stopMusic() {
-        if (stream != null) {
-            player.stop(stream);
-        }
-    }
-
+   
 }
