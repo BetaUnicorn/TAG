@@ -10,7 +10,7 @@ import textio.SysTextIO;
 import textio.TextIO;
 
 public class GameController {
-
+    
     private final Setup s = new Setup();
     private final TextIO io = new TextIO(new SysTextIO());
     private ArrayList<Room> rooms = new ArrayList<>();
@@ -24,7 +24,7 @@ public class GameController {
     private final Trap trap = new Trap();
     private final Highscore highscore = new Highscore();
     private boolean isDead = false;
-
+    
     public void play() throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
         //Setup and player intro
         monsters = s.newNpc();
@@ -36,26 +36,26 @@ public class GameController {
         monsters.get(3).setRoom(rooms.get(7));
         monsters.get(4).setRoom(rooms.get(9));
         monsters.get(5).setRoom(rooms.get(11));
-
+        
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
 
         //starts background music
         Music.loadSound("bg.wav");
         Music.loop();
-
+        
         io.put("***********************************************************************************\n"
                 + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n"
                 + "Beyond this waterfall lies a small coridor.\n"
                 + p.getName() + " wakes up in a coridor, with a rusty dagger at his side, without any recollection about how you got there,\n"
                 + "and a feeling of disarray.\n"
                 + "*********************************************************************************\n");
-
+        
         io.put("Welcome " + p.getName() + "\nIf you're at any point throughout the game need help, type 'help' for a list of commands " + "\nPress enter to continue\n");
         io.get();
-
+        
         goLoop:
         while (play) {
-
+            
             io.clear();
             io.put("_________________________________________\n");
             io.put("You are standing in " + currRoom.getName() + "\n");
@@ -67,6 +67,22 @@ public class GameController {
 
             //Tests for if player has reached final room
             if (monsters.get(monsters.size() - 1).getCurrRoom().equals(currRoom)) {
+                io.put("                     ^    ^\n"
+                        + "                       / \\  //\\\n"
+                        + "         |\\___/|      /   \\//  .\\\n"
+                        + "         /O  O  \\__  /    //  | \\ \\\n"
+                        + "        /     /  \\/_/    //   |  \\  \\\n"
+                        + "        @___@'    \\/_   //    |   \\   \\ \n"
+                        + "           |       \\/_ //     |    \\    \\ \n"
+                        + "           |        \\///      |     \\     \\ \n"
+                        + "          _|_ /   )  //       |      \\     _\\\n"
+                        + "         '/,_ _ _/  ( ; -.    |    _ _\\.-~        .-~~~^-.\n"
+                        + "         ,-{        _      `-.|.-~-.           .~         `.\n"
+                        + "          '/\\      /                 ~-. _ .-~      .-~^-.  \\\n"
+                        + "             `.   {            }                   /      \\  \\\n"
+                        + "           .----~-.\\        \\-'                 .~         \\  `. \\^-.\n"
+                        + "          ///.----..>    c   \\             _ -~             `.  ^-`   ^-_\n"
+                        + "            ///-._ _ _ _ _ _ _}^ - - - - ~                     ~--,   .-~\n");
                 io.put("***********************************************\n");
                 io.put("You met " + monsters.get(monsters.size() - 1).getName() + "\n");
                 io.put("***********************************************\n");
@@ -84,7 +100,7 @@ public class GameController {
                 io.put(highscore.showScores());
                 play = false;
                 break;
-
+                
             }
 
             //Prints available firections
@@ -118,7 +134,7 @@ public class GameController {
                         Music.loadSound("death.wav");
                         break;
                     }
-
+                    
                 }
             }
 
@@ -126,13 +142,13 @@ public class GameController {
             prevRoom = currRoom;
             currRoom = pInput();
         }
-
+        
         if (!roomHist.isEmpty()) {
             io.put("Room histroy: " + roomHist.toString() + "\n\n");
         }
-
+        
     }
-
+    
     public ArrayList<Room> getRooms() {
         return rooms;
     }
@@ -145,11 +161,11 @@ public class GameController {
     public Room pInput() {
         Room nextRoom = currRoom;
         boolean go = true;
-
+        
         while (go) {
-
+            
             io.put("What do you want to do?");
-
+            
             switch (io.get().toLowerCase()) {
                 case "n":
                 case "north":
@@ -160,7 +176,7 @@ public class GameController {
                         io.put("You can't go North \n");
                     }
                     break;
-
+                
                 case "s":
                 case "south":
                     if (currRoom.getSouth() != null) {
@@ -170,7 +186,7 @@ public class GameController {
                         io.put("You can't go South \n");
                     }
                     break;
-
+                
                 case "e":
                 case "east":
                     if (currRoom.getEast() != null) {
@@ -180,7 +196,7 @@ public class GameController {
                         io.put("You can't go East \n");
                     }
                     break;
-
+                
                 case "w":
                 case "west":
                     if (currRoom.getWest() != null) {
@@ -190,14 +206,14 @@ public class GameController {
                         io.put("You can't go West \n");
                     }
                     break;
-
+                
                 case "q":
                 case "quit":
                     io.put("Game Over\n");
                     play = false;
                     go = false;
                     break;
-
+                
                 case "h":
                 case "help":
                     io.put("N & NORTH\tMove Northern direction\n"
@@ -211,39 +227,39 @@ public class GameController {
                             + "DIR\t\tShow possible directions"
                             + "\n");
                     break;
-
+                
                 case "stats":
                     io.put("----------------------------------------------\n");
                     io.put(p.getName() + "\n"
                             + p.getHealth() + " HP \n"
                             + p.getBank() + " Gold \n"
                             + p.getWeaponEquipped());
-
+                    
                     io.put("----------------------------------------------\n");
-
+                    
                     break;
-
+                
                 case "inspect":
                     p.loot(currRoom, p);
                     break;
-
+                
                 case "inv":
                     p.useItem(p, currRoom);
                     break;
                 case "dir":
                     io.put(getDir());
                     break;
-
+                
                 default:
                     io.put("Please pick a valid command...\n\n");
                     break;
-
+                
             }
         }
-
+        
         return nextRoom;
     }
-
+    
     public boolean combatOptions(Players p, NPC monster) throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
         Combat c = new Combat();
         boolean isDead = false;
@@ -252,7 +268,7 @@ public class GameController {
         Music.loadSound("long.wav");
         Music.play();
         do {
-
+            
             switch (io.get().toLowerCase()) {
                 case "f":
                 case "fight":
@@ -266,19 +282,19 @@ public class GameController {
                     currRoom = prevRoom;
                     io.put("You ran away from " + monster.getName() + ", into " + currRoom.getName() + "\n");
                     break;
-
+                
                 default:
                     io.put("Please input a valid command.\n");
                     break;
             }
-
+            
         } while (validInput);
         return isDead;
     }
-
+    
     public String getDir() {
         StringBuilder str = new StringBuilder();
-
+        
         str.append("You see doors in the following directions:  ");
         if (currRoom.getNorth() != null) {
             str.append("|North|");
@@ -292,32 +308,32 @@ public class GameController {
         if (currRoom.getWest() != null) {
             str.append("|West|");
         }
-
+        
         str.append("\n");
-
+        
         return str.toString();
     }
-
+    
     public void addRoomHistory(Room room) {
         roomHist.add(room);
     }
-
+    
     public Room getRoom() {
         return currRoom;
     }
-
+    
     public void setPlay(boolean play) {
         this.play = play;
     }
-
+    
     public void deathNote() throws IOException {
         io.put("You are dead \n");
         io.put("Here are all the people who did it better than you. \n");
         io.put(highscore.showScores());
     }
-
+    
     public void setCurrRoom(Room currRoom) {
         this.currRoom = currRoom;
     }
-
+    
 }
