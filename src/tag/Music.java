@@ -13,16 +13,14 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
 /**
  *
  * @author Martin
  */
 public class Music {
 
-    private static boolean bgBool = true;
     private static Clip clip;
-    
+
     public static void backMusic(String musicName) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         File file = new File(musicName);
         try {
@@ -31,31 +29,30 @@ public class Music {
                 clip = AudioSystem.getClip();
                 clip.open(sound);
             }
-        
+
         } catch (IOException e) {
-        
+
         } catch (UnsupportedAudioFileException e) {
-            
+
         } catch (LineUnavailableException e) {
-            
+
         }
-        
-        
+
     }
-    
+
     public static void play() {
         if (clip != null) {
             clip.setFramePosition(0);
             clip.start();
         }
     }
-    
+
     public static void loop() {
         if (clip != null) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
-    
+
     public static void stop() {
         if (clip != null) {
             clip.stop();
