@@ -1,5 +1,7 @@
 package tag;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tag.items.Item;
 import tag.items.Weapon;
 import textio.SysTextIO;
@@ -38,9 +40,15 @@ public class Monster implements NPC {
         if(this.health <= 0){
             return true;
         }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Monster.class.getName()).log(Level.SEVERE, null, ex);
+        }
         io.put(this.name + " attacked you with " + this.equippedWeapon.getName() + "\n");
         p.changeHP(-equippedWeapon.getDamage());
         io.put(p.getName() + " now has " + p.getHP() + " HP left.\n");
+        io.put("----------------------------------------------------------------------------------------\n");
         return false;
     }
 

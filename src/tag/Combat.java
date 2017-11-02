@@ -25,6 +25,7 @@ public class Combat {
                 return true;
             } else if (monster.getHP() <= 0) {
                 io.put(monster.getName() + " died and may have dropped phat lootz, try inspect to see what.\n");
+                io.put("----------------------------------------------------------------------------------------\n");
                 action.monsterDrop(currRoom, monster);
                 monsters.remove(monster);
                 Music.stop();
