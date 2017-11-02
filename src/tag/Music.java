@@ -21,7 +21,7 @@ public class Music {
 
     private static Clip clip;
 
-    public static void backMusic(String musicName) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public static void loadSound(String musicName) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         File file = new File(musicName);
         try {
             if (file.exists()) {

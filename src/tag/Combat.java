@@ -28,7 +28,7 @@ public class Combat {
                 action.monsterDrop(currRoom, monster);
                 monsters.remove(monster);
                 Music.stop();
-                Music.backMusic("death.wav");
+                Music.loadSound("death.wav");
                 Music.play();
                 Thread.sleep(1000);
                 break;

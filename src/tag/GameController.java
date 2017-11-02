@@ -40,7 +40,7 @@ public class GameController {
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
 
         //starts background music
-        Music.backMusic("bg.wav");
+        Music.loadSound("bg.wav");
         Music.loop();
 
         io.put("***********************************************************************************\n"
@@ -111,11 +111,11 @@ public class GameController {
                     io.put("You met " + monsters.get(i).getName() + "\n");
                     io.put("***********************************************\n");
                     isDead = combatOptions(p, monsters.get(i));
-                    Music.backMusic("bg.wav");
+                    Music.loadSound("bg.wav");
                     Music.loop();
                     if (isDead == true) {
                         deathNote();
-                        Music.backMusic("death.wav");
+                        Music.loadSound("death.wav");
                         break;
                     }
 
@@ -244,12 +244,12 @@ public class GameController {
         return nextRoom;
     }
 
-    public boolean combatOptions(Players p, NPC monster) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public boolean combatOptions(Players p, NPC monster) throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
         Combat c = new Combat();
         boolean isDead = false;
         boolean validInput = true;
         io.put("(f)ight or (r)un\n");
-        Music.backMusic("long.wav");
+        Music.loadSound("long.wav");
         Music.play();
         do {
 
