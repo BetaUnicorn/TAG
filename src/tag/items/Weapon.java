@@ -9,6 +9,7 @@ public class Weapon implements Item {
     private final TextIO io = new TextIO(new SysTextIO());
     private String name;
     private int damage;
+    private String sound;
 
     public Weapon(String name, int damage) {
         this.damage = damage;
