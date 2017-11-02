@@ -127,13 +127,16 @@ public class GameController {
                     io.put("You met " + monsters.get(i).getName() + "\n");
                     io.put("***********************************************\n");
                     isDead = combatOptions(p, monsters.get(i));
-                    Music.loadSound("bg.wav");
-                    Music.loop();
                     if (isDead == true) {
+                        Music.stop();
                         deathNote();
                         Music.loadSound("death.wav");
+                        Music.play();
+                        Music.stop();
                         break;
                     }
+                    Music.loadSound("bg.wav");
+                    Music.loop();
                     
                 }
             }
