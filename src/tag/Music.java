@@ -23,6 +23,8 @@ public class Music {
     private static AudioPlayer player = AudioPlayer.player;
     private static AudioStream stream;
     private static AudioData MD;
+    private static ContinuousAudioDataStream loop = null;
+    
 
     public static void battleMusic() throws FileNotFoundException, IOException {
 
@@ -53,13 +55,19 @@ public class Music {
             stream = new AudioStream(battleMusic);
             //player.start(stream);
             MD = stream.getData();
-            ContinuousAudioDataStream loop = new ContinuousAudioDataStream(MD);
+            loop = new ContinuousAudioDataStream(MD);
             player.start(loop);
 
         } catch (FileNotFoundException e) {
 
         } catch (IOException e) {
 
+        }
+    }
+    
+    public static void stopBgMusic(){
+        if(loop != null){
+            player.stop(loop);
         }
     }
 

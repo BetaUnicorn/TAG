@@ -35,12 +35,12 @@ public class GameController {
         monsters.get(3).setRoom(rooms.get(7));
         monsters.get(4).setRoom(rooms.get(9));
         monsters.get(5).setRoom(rooms.get(11));
-        
+
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
-        
+
         //starts background music
         Music.bgMusic();
-        
+
         io.put("***********************************************************************************\n"
                 + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n"
                 + "Beyond this waterfall lies a small coridor.\n"
@@ -65,7 +65,6 @@ public class GameController {
 
             //Tests for if player has reached final room
             if (monsters.get(monsters.size() - 1).getCurrRoom().equals(currRoom)) {
-             
                 io.put("***********************************************\n");
                 io.put("You met " + monsters.get(monsters.size() - 1).getName() + "\n");
                 io.put("***********************************************\n");
@@ -105,10 +104,12 @@ public class GameController {
             //Checks for monster collision
             for (int i = 0; i < monsters.size(); i++) {
                 if (currRoom.equals(monsters.get(i).getCurrRoom())) {
+                    Music.stopBgMusic();
                     io.put("***********************************************\n");
                     io.put("You met " + monsters.get(i).getName() + "\n");
                     io.put("***********************************************\n");
                     isDead = combatOptions(p, monsters.get(i));
+                    Music.bgMusic();
                     if (isDead == true) {
                         deathNote();
                         break;
