@@ -39,14 +39,24 @@ public class Combat {
 
     public void music() throws FileNotFoundException, IOException {
 
-        InputStream battleMusic = new FileInputStream("long.wav");
+        try {
 
-        stream = new AudioStream(battleMusic);
-        player.start(stream);
+            InputStream battleMusic = new FileInputStream("long.wav");
+
+            stream = new AudioStream(battleMusic);
+            player.start(stream);
+        }
+        
+        catch(FileNotFoundException e){
+            
+        }
+        catch(IOException e){
+            
+        }
     }
-    
-    public void stopMusic(){
-        if(stream != null){
+
+    public void stopMusic() {
+        if (stream != null) {
             player.stop(stream);
         }
     }
