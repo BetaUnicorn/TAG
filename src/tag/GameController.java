@@ -3,6 +3,8 @@ package tag;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import tag.items.Weapon;
 import textio.SysTextIO;
 import textio.TextIO;
@@ -20,11 +22,10 @@ public class GameController {
     private final Human p = s.newPlayer();
     private final Action pick = new Action();
     private final Trap trap = new Trap();
-    private Room monsterCurrRoom;
     private final Highscore highscore = new Highscore();
     private boolean isDead = false;
 
-    public void play() throws IOException {
+    public void play() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         //Setup and player intro
         monsters = s.newNpc();
         rooms = s.createRooms();
@@ -39,7 +40,8 @@ public class GameController {
         p.setEquippedWeapon(new Weapon("Rusty Dagger", 5));
 
         //starts background music
-        Music.bgMusic();
+        Music.backMusic("bg.wav");
+        Music.loop();
 
         io.put("***********************************************************************************\n"
                 + "At a short waterfall in a overcast mountain top marks the entrance to a dungeon. \n"
@@ -104,12 +106,13 @@ public class GameController {
             //Checks for monster collision
             for (int i = 0; i < monsters.size(); i++) {
                 if (currRoom.equals(monsters.get(i).getCurrRoom())) {
-                    Music.stopBgMusic();
+                    Music.stop();
                     io.put("***********************************************\n");
                     io.put("You met " + monsters.get(i).getName() + "\n");
                     io.put("***********************************************\n");
                     isDead = combatOptions(p, monsters.get(i));
-                    Music.bgMusic();
+                    Music.backMusic("bg.wav");
+                    Music.loop();
                     if (isDead == true) {
                         deathNote();
                         break;
@@ -240,12 +243,13 @@ public class GameController {
         return nextRoom;
     }
 
-    public boolean combatOptions(Players p, NPC monster) throws IOException {
+    public boolean combatOptions(Players p, NPC monster) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         Combat c = new Combat();
         boolean isDead = false;
         boolean validInput = true;
         io.put("(f)ight or (r)un\n");
-        Music.battleMusic();
+        Music.backMusic("long.wav");
+        Music.play();
         do {
 
             switch (io.get().toLowerCase()) {
@@ -256,7 +260,7 @@ public class GameController {
                     return isDead;
                 case "r":
                 case "run":
-                    Music.stopMusic();
+                    Music.stop();
                     validInput = false;
                     currRoom = prevRoom;
                     io.put("You ran away from " + monster.getName() + ", into " + currRoom.getName() + "\n");

@@ -1,12 +1,7 @@
 package tag;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+
 import textio.SysTextIO;
 import textio.TextIO;
 
@@ -29,7 +24,7 @@ public class Combat {
                 io.put(monster.getName() + " died and may have dropped phat lootz, try inspect to see what.\n");
                 action.monsterDrop(currRoom, monster);
                 monsters.remove(monster);
-                Music.stopMusic();
+                Music.stop();
                 break;
             }
         }

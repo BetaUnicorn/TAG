@@ -5,14 +5,14 @@
  */
 package tag;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 /**
  *
@@ -20,54 +20,45 @@ import sun.audio.ContinuousAudioDataStream;
  */
 public class Music {
 
-    private static AudioPlayer player = AudioPlayer.player;
-    private static AudioStream stream;
-    private static AudioData MD;
-    private static ContinuousAudioDataStream loop = null;
+    private static boolean bgBool = true;
+    private static Clip clip;
     
-
-    public static void battleMusic() throws FileNotFoundException, IOException {
-
+    public static void backMusic(String musicName) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        File file = new File(musicName);
         try {
-
-            InputStream battleMusic = new FileInputStream("long.wav");
-
-            stream = new AudioStream(battleMusic);
-            player.start(stream);
-        } catch (FileNotFoundException e) {
-
+            if (file.exists()) {
+                AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+                clip = AudioSystem.getClip();
+                clip.open(sound);
+            }
+        
         } catch (IOException e) {
-
+        
+        } catch (UnsupportedAudioFileException e) {
+            
+        } catch (LineUnavailableException e) {
+            
         }
+        
+        
     }
-
-    public static void stopMusic() {
-        if (stream != null) {
-            player.stop(stream);
-        }
-    }
-
-    public static void bgMusic() {
-        try {
-
-            InputStream battleMusic = new FileInputStream("short.wav");
-
-            stream = new AudioStream(battleMusic);
-            //player.start(stream);
-            MD = stream.getData();
-            loop = new ContinuousAudioDataStream(MD);
-            player.start(loop);
-
-        } catch (FileNotFoundException e) {
-
-        } catch (IOException e) {
-
+    
+    public static void play() {
+        if (clip != null) {
+            clip.setFramePosition(0);
+            clip.start();
         }
     }
     
-    public static void stopBgMusic(){
-        if(loop != null){
-            player.stop(loop);
+    public static void loop() {
+        if (clip != null) {
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+    }
+    
+    public static void stop() {
+        if (clip != null) {
+            clip.stop();
         }
     }
 
