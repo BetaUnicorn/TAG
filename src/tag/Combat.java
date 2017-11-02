@@ -1,6 +1,9 @@
 package tag;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import textio.SysTextIO;
 import textio.TextIO;
@@ -10,7 +13,7 @@ public class Combat {
     private final TextIO io = new TextIO(new SysTextIO());
 
 
-    public boolean combatScenario(Players p, NPC monster, Room currRoom, ArrayList<NPC> monsters) {
+    public boolean combatScenario(Players p, NPC monster, Room currRoom, ArrayList<NPC> monsters) throws UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
 
         boolean combat = true;
         Action action = new Action();
@@ -25,6 +28,9 @@ public class Combat {
                 action.monsterDrop(currRoom, monster);
                 monsters.remove(monster);
                 Music.stop();
+                Music.backMusic("death.wav");
+                Music.play();
+                Thread.sleep(1000);
                 break;
             }
         }

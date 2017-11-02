@@ -25,7 +25,7 @@ public class GameController {
     private final Highscore highscore = new Highscore();
     private boolean isDead = false;
 
-    public void play() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void play() throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
         //Setup and player intro
         monsters = s.newNpc();
         rooms = s.createRooms();
@@ -115,6 +115,7 @@ public class GameController {
                     Music.loop();
                     if (isDead == true) {
                         deathNote();
+                        Music.backMusic("death.wav");
                         break;
                     }
 
